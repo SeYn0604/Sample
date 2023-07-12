@@ -23,24 +23,22 @@ public class Player : MonoBehaviour
 
         transform.Translate(new Vector3(x, y, 0f) * Time.deltaTime * speed);
 
-        if ((x == 0 && y == 0) && hp != 0) 
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))  
         {
-            animator.SetTrigger("Idle");
+            sr.flipX = true;
         }
-        else if (hp != 0) 
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            animator.SetTrigger("Run");
+            sr.flipX= false;
         }
-        if (x != 0)
+        if(x == 0 && y == 0)
         {
-            if (x < 0)
-            {
-                sr.flipX = true;
-            }
-            else
-            {
-                sr.flipX = false;
-            }
+            animator.SetBool("Run", false);
         }
+        else
+        {
+            animator.SetBool("Run", true);
+        }
+        //else dead 조건 추가해야됌
     }
 }
