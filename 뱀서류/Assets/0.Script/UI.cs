@@ -16,10 +16,19 @@ public class UI : MonoBehaviour
     private int level = 0;
     private float timer = 0;  
     
-    private int killCount = 0;  
-    
+    private int killCount = 0;
+
     //Sample Code
-    private float[] exps = { 100f, 200f, 300f, 400f, 500f };
+    private float[] exps;
+
+    public void Awake()
+    {
+        exps = new float[100];
+        for (int i = 0; i < exps.Length; i++)
+        {
+            exps[i] = 10 * i;
+        }
+    }
     public float Exp
     {
         get { return exp; }
