@@ -4812,8 +4812,8 @@ Canvas:
   m_GameObject: {fileID: 511261923}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 304219224}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -13611,12 +13611,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7864e7facd9674095914302edc4c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
   boxColls: []
   sliderExp: {fileID: 1246017130}
   txtTime: {fileID: 1235895087}
   txtKillCount: {fileID: 575007836}
   txtLv: {fileID: 509866208}
+  canvas: {fileID: 0}
 --- !u!1 &1663656449
 GameObject:
   m_ObjectHideFlags: 0
@@ -18420,6 +18420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 528589944320515376, guid: 779babc495cf4c241a2b2013a5f4ee16, type: 3}
+      propertyPath: p
+      value: 
+      objectReference: {fileID: 1853127463}
     - target: {fileID: 528589944320515376, guid: 779babc495cf4c241a2b2013a5f4ee16, type: 3}
       propertyPath: target
       value: 
