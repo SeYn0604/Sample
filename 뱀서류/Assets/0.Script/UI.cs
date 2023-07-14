@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private Slider sliderExp;
     [SerializeField] private Text txtTime;
     [SerializeField] private Text txtKillCount;
     [SerializeField] private Text txtLv;
+    [SerializeField] private RectTransform canvas;
 
     private float maxExp;
     private float exp;
@@ -64,6 +66,16 @@ public class UI : MonoBehaviour
         maxExp = exps[level];
         sliderExp.value = 0f;
 
+        
+         for (int i = 0; i < boxColls.Length; i++)
+         {
+             Vector2 v1 = canvas.sizeDelta;
+             if (i < 2)
+                 v1.y = 5;
+             else
+                 v1.x = 5;
+             boxColls[i].size = v1;
+         }
     }
     // Update is called once per frame
     void Update()
