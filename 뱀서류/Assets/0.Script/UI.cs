@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    public static UI instance;
     [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private Slider sliderExp;
     [SerializeField] private Text txtTime;
     [SerializeField] private Text txtKillCount;
     [SerializeField] private Text txtLv;
     [SerializeField] private RectTransform canvas;
+    [SerializeField] private Image hpimg;
 
     private float maxExp;
     private float exp;
@@ -63,6 +65,7 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         maxExp = exps[level];
         sliderExp.value = 0f;
 
@@ -88,5 +91,9 @@ public class UI : MonoBehaviour
         timer += Time.deltaTime;
         System.TimeSpan ts = System.TimeSpan.FromSeconds(timer);
         txtTime.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+    }
+    public void SetHP(int HP, int maxHP)
+    {
+        hpimg.fillAmount = (float)HP / maxHP;
     }
 }

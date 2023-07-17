@@ -13,7 +13,7 @@ public class MonsterSpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateMonster", 1, 1);
+        InvokeRepeating("CreateMonster", 0.5f, 0.5f);
     }
 
     // Update is called once per frame

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [HideInInspector] private float speed = 3f;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
-    float hp = 100;
+    int hp, maxhp = 100;
     float x, y;
     // Start is called before the first frame update
     void Start()
@@ -40,5 +40,10 @@ public class Player : MonoBehaviour
             animator.SetBool("Run", true);
         }
         //else dead 조건 추가해야됌
+    }
+    public void Hit(int damage)
+    {
+        hp -= damage;
+        UI.instance.SetHP(hp, maxhp);
     }
 }

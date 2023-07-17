@@ -6,6 +6,10 @@ public class Monster : MonoBehaviour
 {
     [SerializeField] private Player p;
     [SerializeField] private SpriteRenderer sr;
+
+    protected float atkTime = 2f;
+    protected int power = 6;
+    private float atkTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +26,16 @@ public class Monster : MonoBehaviour
         sr.flipX = x < 0 ? true : x == 0 ? true : false;
 
         float distance = Vector2.Distance(p.transform.position, transform.position);
-
-        if (distance < 1)
+        
+        if (distance <= 1)
         {
+            atkTimer += Time.deltaTime;
             //АјАн
+            if(atkTimer > atkTime)
+            {
+                atkTimer = 0;
+                p.Hit(power);
+            }
         }
         else
         {
