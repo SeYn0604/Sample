@@ -65,7 +65,7 @@ public class Monster : MonoBehaviour
     {
         if(collision.GetComponent<Shield>())
         {
-            hitFreezeTimer = 1f;
+            hitFreezeTimer = 0.3f;
             hp -= 10;
             if(hp <= 0)
             {

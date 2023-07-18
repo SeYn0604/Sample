@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     {
         if(isPickup)
         {
-            Vector2 v1 = (target.transform.position - transform.position).normalized * Time.deltaTime * 3f;
+            Vector2 v1 = (target.transform.position - transform.position).normalized * Time.deltaTime * 5f;
             transform.Translate(v1);
             if (Vector3.Distance(transform.position, target.transform.position)<0.1f)
             {

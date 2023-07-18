@@ -10,36 +10,44 @@ public class MonsterSpawnController : MonoBehaviour
     [SerializeField] private Transform parent;
 
     [SerializeField] private BoxCollider2D[] boxColls;
-    // Start is called before the first frame update
+
+    int range = 10;
     void Start()
     {
-        InvokeRepeating("CreateMonster", 0.1f, 0.1f);
+        StartCoroutine(CreateMonster(0.1f));
     }
+    IEnumerator CreateMonster(float time)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            int rand = Random.Range(0, boxColls.Length);
+            Vector2 v = RandomPosition(rand);
 
-    // Update is called once per frame
-    void Update()
+            Monster m = Instantiate(monster, v, Quaternion.identity);
+            m.SetPlayer(p);
+            m.transform.SetParent(parent);
+        }
+    }
+    Vector2 RandomPosition(int index)
     {
 
-    }
+        RectTransform pos = boxColls[index].GetComponent<RectTransform>();
 
-    void CreateMonster()
-    {
-        int rand = Random.Range(0, boxColls.Length);
-        Vector2 v = RandomPosition(boxColls[rand]);
+        Vector3 randPos = Vector3.zero;
+        // Top = 0 , Bottom = 1
+        if (index == 0 || index == 1)
+        {
 
-        Monster m = Instantiate(monster, v, Quaternion.identity);
-        m.SetPlayer(p);
-        m.transform.SetParent(parent);
-    }
-    Vector2 RandomPosition(BoxCollider2D boxColl)
-    {
-        Vector2 pos = boxColl.GetComponent<RectTransform>().position;
+            Debug.Log(pos);
+            randPos = new Vector2(pos.position.x + Random.Range(-range, range), pos.position.y);
+        }
+        // ³ª¸ÓÁö
+        else
+        {
+            randPos = new Vector2(pos.position.x, pos.position.y + Random.Range(-range, range));
+        }
 
-        Vector2 ranger = new Vector2(boxColl.bounds.size.x, boxColl.bounds.size.y);
-
-        ranger.x = Random.Range((ranger.x / 2) * 1, ranger.x / 2);
-        ranger.y = Random.Range((ranger.y / 2) * 1, ranger.y / 2);
-
-        return pos + ranger;
+        return randPos;
     }
 }
