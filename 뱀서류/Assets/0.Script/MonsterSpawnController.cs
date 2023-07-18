@@ -13,7 +13,7 @@ public class MonsterSpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateMonster", 0.5f, 0.5f);
+        InvokeRepeating("CreateMonster", 0.1f, 0.1f);
     }
 
     // Update is called once per frame
@@ -33,12 +33,12 @@ public class MonsterSpawnController : MonoBehaviour
     }
     Vector2 RandomPosition(BoxCollider2D boxColl)
     {
-        Vector2 pos = boxColl.transform.position;
+        Vector2 pos = boxColl.GetComponent<RectTransform>().position;
 
         Vector2 ranger = new Vector2(boxColl.bounds.size.x, boxColl.bounds.size.y);
 
-        ranger.x = Random.Range((ranger.x / 2) * -1, ranger.x / 2);
-        ranger.y = Random.Range((ranger.y / 2) * -1, ranger.y / 2);
+        ranger.x = Random.Range((ranger.x / 2) * 1, ranger.x / 2);
+        ranger.y = Random.Range((ranger.y / 2) * 1, ranger.y / 2);
 
         return pos + ranger;
     }
