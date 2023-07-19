@@ -330,7 +330,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020463968}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &253385488
 TilemapRenderer:
@@ -4673,7 +4673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505449712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShieldParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5056,7 +5056,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020463968}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &725036239
 TilemapRenderer:
@@ -9220,10 +9220,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 253385487}
   - {fileID: 725036238}
   - {fileID: 1143944663}
   - {fileID: 1816034107}
+  - {fileID: 253385487}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9319,7 +9319,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020463968}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1143944664
 TilemapRenderer:
@@ -13649,6 +13649,37 @@ MonoBehaviour:
   txtLv: {fileID: 509866208}
   canvas: {fileID: 0}
   hpimg: {fileID: 2136949613}
+--- !u!1 &1490724349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490724350}
+  m_Layer: 8
+  m_Name: BulletPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490724350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490724349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1853127465}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663656449
 GameObject:
   m_ObjectHideFlags: 0
@@ -13959,7 +13990,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1020463968}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1816034108
 TilemapRenderer:
@@ -18096,7 +18127,7 @@ GameObject:
   - component: {fileID: 1853127461}
   - component: {fileID: 1853127466}
   - component: {fileID: 1853127467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '[[Player]]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18141,6 +18172,8 @@ MonoBehaviour:
   shieldPrefab: {fileID: 7456546388444218303, guid: 7b35955bc323bea4188a64e3163878c1, type: 3}
   shieldParent: {fileID: 505449712}
   ui: {fileID: 1246017131}
+  firePos: {fileID: 1490724350}
+  bullet: {fileID: 1973865334552951236, guid: bc8e159ab0e640d4abd34a5afed0b28e, type: 3}
 --- !u!212 &1853127464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18206,6 +18239,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 505449712}
+  - {fileID: 1490724350}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18224,7 +18258,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.5
+  m_Radius: 1
 --- !u!50 &1853127467
 Rigidbody2D:
   serializedVersion: 4

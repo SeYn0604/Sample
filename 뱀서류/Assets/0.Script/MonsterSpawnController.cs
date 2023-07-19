@@ -38,8 +38,6 @@ public class MonsterSpawnController : MonoBehaviour
         // Top = 0 , Bottom = 1
         if (index == 0 || index == 1)
         {
-
-            Debug.Log(pos);
             randPos = new Vector2(pos.position.x + Random.Range(-range, range), pos.position.y);
         }
         // ³ª¸ÓÁö

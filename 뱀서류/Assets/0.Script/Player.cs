@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform shieldPrefab;
     [SerializeField] private Transform shieldParent;
     [SerializeField] private UI ui;
+    [SerializeField] private Transform firePos;
+    [SerializeField] Bullet bullet;
+
+    float bulletTimer;
     private List<Transform> shields = new List<Transform>();
     int hp, maxhp, shieldCount, shieldSpeed;
     float x, y;
@@ -57,6 +62,34 @@ public class Player : MonoBehaviour
             shieldSpeed += 10;
         }
         shieldParent.Rotate(Vector3.back * Time.deltaTime * shieldSpeed);
+
+        Monster[] monsters = FindObjectsOfType<Monster>();
+        List<Monster> atkMonsterList = new List<Monster>();
+        bulletTimer += Time.deltaTime;
+
+        if(monsters.Length > 0 && bulletTimer > 2f)
+        {
+            foreach(Monster m in monsters)
+            {
+                float distance = Vector3.Distance(transform.position, m.transform.position);
+                if(distance > 4)
+                {
+                    atkMonsterList.Add(m);
+                }    
+            }
+            if(atkMonsterList.Count > 0)
+            {
+                Monster m = atkMonsterList[Random.Range(0,atkMonsterList.Count)];
+                //타겟을 찾아 방향 전환
+                Vector2 vec = transform.position - m.transform.position;
+                float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+                firePos.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
+                Bullet b = Instantiate(bullet, firePos);
+                //b.transform.SetParent(firepos);
+                b.transform.SetParent(null);
+            }
+            bulletTimer = 0;
+        }
     }
     public void Hit(int damage)
     {
@@ -84,5 +117,4 @@ public class Player : MonoBehaviour
     {
         ui.Exp += exp;
     }
-
 }
