@@ -9,7 +9,6 @@ public enum GameState
     Pause,
     Stop
 }
-
 [System.Serializable]
 public class UpgradeData
 {
@@ -21,7 +20,6 @@ public class UpgradeData
 public class UI : MonoBehaviour
 {
     public static UI instance;
-
     [HideInInspector] public GameState gameState = GameState.Stop;
     [SerializeField] private UpgradeData[] upData;
     [SerializeField] private BoxCollider2D[] boxColls;
@@ -32,19 +30,16 @@ public class UI : MonoBehaviour
     [SerializeField] private RectTransform canvas;
     [SerializeField] private Transform levelUpPopup;
     [SerializeField] private Image hpimg;
-
+    [SerializeField] MonsterSpawnController monsterSpawnController;
     private float maxExp;
     private float exp;
-
     private int level = 0;
     private float timer = 0;  
-    
     private int killCount = 0;
-
     private float[] exps;
-
     public void Awake()
     {
+        instance = this;
         exps = new float[100];
         for (int i = 0; i < exps.Length; i++)
         {
@@ -86,7 +81,6 @@ public class UI : MonoBehaviour
     void Start()
     {
         OnGameStart();
-        instance = this;
         maxExp = exps[level];
         sliderExp.value = 0f;
 
@@ -113,8 +107,11 @@ public class UI : MonoBehaviour
             Exp += 1f;
         }
         if(gameState != GameState.Play)
+        {
+            monsterSpawnController.StartSpawn(false); 
             return;
-
+        }
+            
         timer += Time.deltaTime;
         System.TimeSpan ts = System.TimeSpan.FromSeconds(timer);
         txtTime.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
@@ -125,6 +122,7 @@ public class UI : MonoBehaviour
     }
     public void OnGameStart()
     {
+        monsterSpawnController.StartSpawn(true);
         gameState = GameState.Play;
     }
 }

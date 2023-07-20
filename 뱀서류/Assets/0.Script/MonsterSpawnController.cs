@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MonsterSpawnController : MonoBehaviour
 {
     [SerializeField] private Player p;
     [SerializeField] private Monster monster;
     [SerializeField] private Transform parent;
     [SerializeField] private BoxCollider2D[] boxColls;
-
+    IEnumerator createMonster;
     int range = 10;
-    void Start()
+    void Awake()
     {
-        StartCoroutine(CreateMonster(0.1f));
+        createMonster = CreateMonster(1f);
+
+        StartCoroutine(createMonster);
     }
     IEnumerator CreateMonster(float time)
     {
@@ -46,9 +49,11 @@ public class MonsterSpawnController : MonoBehaviour
 
         return randPos;
     }
-    private void Update()
+    public void StartSpawn(bool start)
     {
-        if (UI.instance.gameState != GameState.Play)
-            return;
+        if (start)
+            StartCoroutine(createMonster);
+        else
+            StopCoroutine(createMonster);
     }
 }

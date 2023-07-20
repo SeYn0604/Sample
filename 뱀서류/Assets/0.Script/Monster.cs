@@ -8,6 +8,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject expPrefab;
+    [SerializeField] private GameObject magPrefab;
  
     float hp;
     protected float atkTime = 2f;
@@ -85,6 +86,10 @@ public class Monster : MonoBehaviour
             GetComponent<CapsuleCollider2D>().enabled = false;
             animator.SetBool("Dead", true);
             StartCoroutine("CDropExp");
+            if(UnityEngine.Random.value < 0.005)
+            {
+                Instantiate(magPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
     IEnumerator CDropExp()

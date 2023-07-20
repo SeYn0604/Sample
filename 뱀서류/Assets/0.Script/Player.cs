@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Transform shieldPrefab;
     [SerializeField] private Transform shieldParent;
-    [SerializeField] private UI ui;
     [SerializeField] private Transform firePos;
     [SerializeField] Bullet bullet;
 
@@ -114,18 +113,9 @@ public class Player : MonoBehaviour
             collision.GetComponent<Item>().isPickup = true;
             collision.GetComponent<Item>().target = this;
         }
-        if(collision.gameObject.name == "Mag")
-        {
-            Item[] items = FindObjectsOfType<Item>();
-            foreach (var item in items)
-            {
-                item.target = this;
-                item.isPickup = true;
-            }
-        }
     }
     public void GetExp(int exp)
     {
-        ui.Exp += exp;
+        UI.instance.Exp += exp;
     }
 }
