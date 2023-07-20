@@ -5,10 +5,8 @@ using UnityEngine;
 public class MonsterSpawnController : MonoBehaviour
 {
     [SerializeField] private Player p;
-
     [SerializeField] private Monster monster;
     [SerializeField] private Transform parent;
-
     [SerializeField] private BoxCollider2D[] boxColls;
 
     int range = 10;
@@ -47,5 +45,10 @@ public class MonsterSpawnController : MonoBehaviour
         }
 
         return randPos;
+    }
+    private void Update()
+    {
+        if (UI.instance.gameState != GameState.Play)
+            return;
     }
 }

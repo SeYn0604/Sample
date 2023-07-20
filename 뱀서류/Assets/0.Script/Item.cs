@@ -15,7 +15,9 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPickup)
+        if (UI.instance.gameState != GameState.Play)
+            return;
+        if (isPickup)
         {
             Vector2 v1 = (target.transform.position - transform.position).normalized * Time.deltaTime * 5f;
             transform.Translate(v1);

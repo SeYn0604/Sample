@@ -3,15 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameState
+{
+    Play,
+    Pause,
+    Stop
+}
+
+[System.Serializable]
+public class UpgradeData
+{
+    public Sprite sprite;
+    public string title;
+    public string description1;
+    public string description2;
+}
 public class UI : MonoBehaviour
 {
     public static UI instance;
+
+    [HideInInspector] public GameState gameState = GameState.Stop;
+    [SerializeField] private UpgradeData[] upData;
     [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private Slider sliderExp;
     [SerializeField] private Text txtTime;
     [SerializeField] private Text txtKillCount;
     [SerializeField] private Text txtLv;
     [SerializeField] private RectTransform canvas;
+    [SerializeField] private Transform levelUpPopup;
     [SerializeField] private Image hpimg;
 
     private float maxExp;
@@ -22,7 +41,6 @@ public class UI : MonoBehaviour
     
     private int killCount = 0;
 
-    //Sample Code
     private float[] exps;
 
     public void Awake()
@@ -43,6 +61,8 @@ public class UI : MonoBehaviour
 
             if(exp >= maxExp)
             {
+                gameState = GameState.Pause;
+                levelUpPopup.gameObject.SetActive(true);
                 level++;
                 maxExp = exps[level];
                 sliderExp.value = 0f;
@@ -59,12 +79,13 @@ public class UI : MonoBehaviour
         set
         {
             killCount = value;
-            txtKillCount.text = $"{killCount}";
+            txtKillCount.text = $"{killCount.ToString("000")}";
         }
     }
     // Start is called before the first frame update
     void Start()
     {
+        OnGameStart();
         instance = this;
         maxExp = exps[level];
         sliderExp.value = 0f;
@@ -83,10 +104,16 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F5)) 
+        {
+            gameState = GameState.Play;
+        }
         if(Input.GetKey(KeyCode.F1))
         {
             Exp += 1f;
         }
+        if(gameState != GameState.Play)
+            return;
 
         timer += Time.deltaTime;
         System.TimeSpan ts = System.TimeSpan.FromSeconds(timer);
@@ -95,5 +122,9 @@ public class UI : MonoBehaviour
     public void SetHP(int HP, int maxHP)
     {
         hpimg.fillAmount = (float)HP / maxHP;
+    }
+    public void OnGameStart()
+    {
+        gameState = GameState.Play;
     }
 }

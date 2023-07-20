@@ -22,6 +22,8 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UI.instance.gameState != GameState.Play)
+            return;
         if (p == null || hp < 0)
             return;
         if(hitFreezeTimer > 0)
@@ -65,20 +67,29 @@ public class Monster : MonoBehaviour
     {
         if(collision.GetComponent<Shield>())
         {
-            hitFreezeTimer = 0.3f;
-            hp -= 10;
-            if(hp <= 0)
-            {
-                Destroy(GetComponent<Rigidbody2D>());
-                GetComponent<CapsuleCollider2D>().enabled = false;
-                animator.SetBool("Dead", true);
-                //Invoke("DropExp", 1f);
-                StartCoroutine("CDropExp");
-            }
+            Dead(0.5f, 30);
+        }
+        if(collision.GetComponent<Bullet>())
+        {
+            Dead(1f, 100);
+            Destroy(collision.gameObject);
+        }
+    }
+    void Dead(float freezeTime, int damage)
+    {
+        hitFreezeTimer = freezeTime;
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Destroy(GetComponent<Rigidbody2D>());
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            animator.SetBool("Dead", true);
+            StartCoroutine("CDropExp");
         }
     }
     IEnumerator CDropExp()
     {
+        UI.instance.KillCount++;
         Instantiate(expPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);

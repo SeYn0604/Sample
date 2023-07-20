@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UI.instance.gameState != GameState.Play)
+            return;
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
@@ -111,6 +113,15 @@ public class Player : MonoBehaviour
         {
             collision.GetComponent<Item>().isPickup = true;
             collision.GetComponent<Item>().target = this;
+        }
+        if(collision.gameObject.name == "Mag")
+        {
+            Item[] items = FindObjectsOfType<Item>();
+            foreach (var item in items)
+            {
+                item.target = this;
+                item.isPickup = true;
+            }
         }
     }
     public void GetExp(int exp)
