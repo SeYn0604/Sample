@@ -19,6 +19,7 @@ public class UpgradeUI
     public TMP_Text description1;
     public TMP_Text description2;
 }
+[System.Serializable]
 public class UpgradeData
 {
     public Sprite sprite;
@@ -31,7 +32,7 @@ public class UI : MonoBehaviour
     public static UI instance;
     [HideInInspector] public GameState gameState = GameState.Stop;
     [SerializeField] private UpgradeUI[] upUI;
-    [SerializeField] private UpgradeData[] upData;
+    [SerializeField] public UpgradeData[] upData;
     [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private Slider sliderExp;
     [SerializeField] private Text txtTime;
