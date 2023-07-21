@@ -422,6 +422,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 511261928}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: OnUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &73146036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,39 +5423,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 2
-  upData:
-  - sprite: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC0BD"
-    description1: "\uBCF4\uD638\uC0BD \uAC1C\uC218 +1"
-    description2: "\uCE90\uB9AD\uD130 \uC8FC\uC704\uB97C \uD68C\uC804\uD558\uBA70
-      \uBCF4\uD638"
-  - sprite: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uCD1D"
-    description1: "\uBC1C\uC0AC\uCCB4 \uAC1C\uC218 +1"
-    description2: "\uB79C\uB364\uD55C \uB2E8\uC77C \uC801 \uC0C1\uB300 \uB192\uC740
-      \uB300\uBBF8\uC9C0"
-  - sprite: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC804\uD22C \uC7A5\uAC11"
-    description1: "\uD328\uC2DC\uBE0C "
-    description2: "\uACF5\uACA9 \uC18D\uB3C4 \uC99D\uAC00"
-  - sprite: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC804\uD22C \uC7A5\uD654"
-    description1: "\uD328\uC2DC\uBE0C"
-    description2: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
-  - sprite: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC5D0\uB108\uC9C0 \uB4DC\uB9C1\uD06C"
-    description1: "\uCD5C\uB300 \uCCB4\uB825 \uBC0F \uD68C\uBCF5\uC18D\uB3C4 \uC99D\uAC00"
-    description2: "\uCD5C\uB300 \uCCB4\uB825 \uBC0F \uCCB4\uB825 \uD68C\uBCF5 \uC18D\uB3C4
-      \uC99D\uAC00"
+  upUI:
+  - icon: {fileID: 764066286}
+    levelTxt: {fileID: 614412495}
+    title: {fileID: 1205898923}
+    description1: {fileID: 523195524}
+    description2: {fileID: 1457106432}
+  - icon: {fileID: 637990036}
+    levelTxt: {fileID: 614412495}
+    title: {fileID: 741978549}
+    description1: {fileID: 1285558099}
+    description2: {fileID: 416752964}
+  - icon: {fileID: 790202}
+    levelTxt: {fileID: 614412495}
+    title: {fileID: 1381442575}
+    description1: {fileID: 1277686379}
+    description2: {fileID: 1814040301}
   boxColls: []
   sliderExp: {fileID: 1246017130}
   txtTime: {fileID: 1235895087}
   txtKillCount: {fileID: 575007836}
   txtLv: {fileID: 509866208}
-  canvas: {fileID: 0}
+  canvas: {fileID: 511261927}
   levelUpPopup: {fileID: 1642961290}
   hpimg: {fileID: 2136949613}
   monsterSpawnController: {fileID: 1136823884}
+  p: {fileID: 1853127463}
 --- !u!1 &523195522
 GameObject:
   m_ObjectHideFlags: 0
@@ -16238,6 +16243,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 511261928}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: OnUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1787870599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21060,6 +21077,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 511261928}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: OnUpgrade
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

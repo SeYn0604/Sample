@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector] private float speed = 3f;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Transform shieldPrefab;
@@ -15,12 +14,18 @@ public class Player : MonoBehaviour
 
     float bulletTimer;
     private List<Transform> shields = new List<Transform>();
-    int hp, maxhp, shieldCount, shieldSpeed;
+    int shieldCount, shieldSpeed;
     float x, y;
+    public int HP { get; set; }
+    public int MaxHP { get; set; }
+    public float Speed { get; set; }
+    public float BulletFireDelayTime { get; set; }
     // Start is called before the first frame update
     void Start()
     {
-        hp = maxhp = 100;
+        Speed = 3f;
+        BulletFireDelayTime = 2f;
+        HP = MaxHP = 100;
         shieldSpeed = 10;
     }
 
@@ -32,7 +37,7 @@ public class Player : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
-        transform.Translate(new Vector3(x, y, 0f) * Time.deltaTime * speed);
+        transform.Translate(new Vector3(x, y, 0f) * Time.deltaTime * Speed);
 
         if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))  
         {
@@ -94,8 +99,8 @@ public class Player : MonoBehaviour
     }
     public void Hit(int damage)
     {
-        hp -= damage;
-        UI.instance.SetHP(hp, maxhp);
+        HP -= damage;
+        UI.instance.SetHP(HP, MaxHP);
     }
     public void Shield()
     {
@@ -117,5 +122,12 @@ public class Player : MonoBehaviour
     public void GetExp(int exp)
     {
         UI.instance.Exp += exp;
+    }
+    public void AddShield()
+    {
+        shieldCount++;
+        shields.Add(Instantiate(shieldPrefab, shieldParent));
+        Shield();
+        shieldSpeed += 10;
     }
 }

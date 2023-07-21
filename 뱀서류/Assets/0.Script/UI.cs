@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,14 @@ public enum GameState
     Stop
 }
 [System.Serializable]
+public class UpgradeUI
+{
+    public Image icon;
+    public TMP_Text levelTxt;
+    public TMP_Text title;
+    public TMP_Text description1;
+    public TMP_Text description2;
+}
 public class UpgradeData
 {
     public Sprite sprite;
@@ -21,6 +30,7 @@ public class UI : MonoBehaviour
 {
     public static UI instance;
     [HideInInspector] public GameState gameState = GameState.Stop;
+    [SerializeField] private UpgradeUI[] upUI;
     [SerializeField] private UpgradeData[] upData;
     [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private Slider sliderExp;
@@ -31,12 +41,14 @@ public class UI : MonoBehaviour
     [SerializeField] private Transform levelUpPopup;
     [SerializeField] private Image hpimg;
     [SerializeField] MonsterSpawnController monsterSpawnController;
+    [SerializeField] private Player p;
     private float maxExp;
     private float exp;
     private int level = 0;
     private float timer = 0;  
     private int killCount = 0;
     private float[] exps;
+    private List<UpgradeData> upgradeDatas = new List<UpgradeData>();
     public void Awake()
     {
         instance = this;
@@ -56,6 +68,7 @@ public class UI : MonoBehaviour
 
             if(exp >= maxExp)
             {
+                SetUpgradeData();
                 gameState = GameState.Pause;
                 levelUpPopup.gameObject.SetActive(true);
                 level++;
@@ -83,8 +96,6 @@ public class UI : MonoBehaviour
         OnGameStart();
         maxExp = exps[level];
         sliderExp.value = 0f;
-
-        
          for (int i = 0; i < boxColls.Length; i++)
          {
              Vector2 v1 = canvas.sizeDelta;
@@ -124,5 +135,59 @@ public class UI : MonoBehaviour
     {
         monsterSpawnController.StartSpawn(true);
         gameState = GameState.Play;
+    }
+    void SetUpgradeData()
+    {
+        List<UpgradeData> datas = new List<UpgradeData>();
+        for (int i = 0; i < upData.Length; i++)
+        {
+            UpgradeData ud = new UpgradeData();
+            ud.sprite = upData[i].sprite;
+            ud.title = upData[i].title;
+            ud.description1 = upData[i].description1;
+            ud.description2 = upData[i].description2;
+            datas.Add(ud);
+        }
+
+        upgradeDatas = new List<UpgradeData>();
+        for (int i = 0; i < 3; i++)
+        {
+            int rand = Random.Range(0, datas.Count);
+            UpgradeData ud = new UpgradeData();
+            ud.sprite = datas[rand].sprite;
+            ud.title = datas[rand].title;
+            ud.description1 = datas[rand].description1;
+            ud.description2 = datas[rand].description2;
+            upgradeDatas.Add(ud);
+            datas.RemoveAt(rand);
+        }
+        for (int i = 0; i < upgradeDatas.Count; i++)
+        {
+            upUI[i].icon.sprite = upgradeDatas[i].sprite;
+            upUI[i].title.text = upgradeDatas[i].title;
+            upUI[i].description1.text = upgradeDatas[i].description1;
+            upUI[i].description2.text = upgradeDatas[i].description2;
+        }
+    }
+    public void OnUpgrade(int index)
+    {
+        switch(upgradeDatas[index].sprite.name)
+        {
+            case "Select 0":
+                p.AddShield();
+                break;
+            case "Select 5":
+                p.BulletFireDelayTime -= p.BulletFireDelayTime * 0.1f;
+                break;
+            case "Select 6":
+                break;
+            case "Select 7":
+                p.Speed += 2f;
+                break;
+            case "Select 8":
+                p.HP = p.MaxHP;
+                SetHP(p.HP,p.MaxHP);
+                break;
+        }
     }
 }

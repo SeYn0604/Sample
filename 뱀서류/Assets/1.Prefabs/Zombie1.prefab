@@ -51,7 +51,7 @@ MonoBehaviour:
   p: {fileID: 0}
   sr: {fileID: 6737032309165488001}
   animator: {fileID: 6737032309165488062}
-  expPrefab: {fileID: 4507370542350711388, guid: 4f255c02d36d27b41894741d74802d3b, type: 3}
+  expPrefab: {fileID: 6625326005845883057, guid: 4f255c02d36d27b41894741d74802d3b, type: 3}
   magPrefab: {fileID: 5556368891973820180, guid: 6b54db2dd1177ad48a667d02bb9f7206, type: 3}
 --- !u!212 &6737032309165488001
 SpriteRenderer:
