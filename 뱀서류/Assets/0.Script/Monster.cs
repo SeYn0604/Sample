@@ -72,8 +72,13 @@ public class Monster : MonoBehaviour
         }
         if(collision.GetComponent<Bullet>())
         {
+            
+            collision.GetComponent<Bullet>().HitCount++;
+            if(collision.GetComponent <Bullet>().HitCount >= collision.GetComponent<Bullet>().HitMaxCount)
+            {
+                Destroy(collision.gameObject);
+            }
             Dead(1f, 100);
-            Destroy(collision.gameObject);
         }
     }
     void Dead(float freezeTime, int damage)

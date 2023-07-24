@@ -179,6 +179,7 @@ public class UI : MonoBehaviour
                 break;
             case "Select 5":
                 p.BulletFireDelayTime -= p.BulletFireDelayTime * 0.1f;
+                p.BulletHitMaxCount++;
                 break;
             case "Select 6":
                 break;

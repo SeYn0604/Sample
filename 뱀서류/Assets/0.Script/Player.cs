@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public int MaxHP { get; set; }
     public float Speed { get; set; }
     public float BulletFireDelayTime { get; set; }
+    public int BulletHitMaxCount { get; set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -91,10 +92,15 @@ public class Player : MonoBehaviour
                 float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
                 firePos.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
                 Bullet b = Instantiate(bullet, firePos);
+                b.SetHitMaxCount(BulletHitMaxCount + 1);
                 //b.transform.SetParent(firepos);
                 b.transform.SetParent(null);
             }
             bulletTimer = 0;
+        }
+        if(Input.GetKeyUp(KeyCode.F4))
+        {
+            BulletHitMaxCount++;
         }
     }
     public void Hit(int damage)
