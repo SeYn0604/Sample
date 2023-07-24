@@ -43,6 +43,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Image hpimg;
     [SerializeField] MonsterSpawnController monsterSpawnController;
     [SerializeField] private Player p;
+    [SerializeField] private Bullet bullet;
     private float maxExp;
     private float exp;
     private int level = 0;
@@ -70,6 +71,7 @@ public class UI : MonoBehaviour
             if(exp >= maxExp)
             {
                 SetUpgradeData();
+                AudioManager.instance.Play("levelup");
                 gameState = GameState.Pause;
                 levelUpPopup.gameObject.SetActive(true);
                 level++;
@@ -174,7 +176,7 @@ public class UI : MonoBehaviour
     {
         switch(upgradeDatas[index].sprite.name)
         {
-            case "Select 0":
+            case "Bullet 0":
                 p.AddShield();
                 break;
             case "Select 5":

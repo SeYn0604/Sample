@@ -23,6 +23,6 @@ public class Bullet : MonoBehaviour
     }
     public void SetHitMaxCount(int count)
     {
-        HitCount = count;
+        HitMaxCount = count;
     }
 }

@@ -13,7 +13,7 @@ public class MonsterSpawnController : MonoBehaviour
     int range = 10;
     void Awake()
     {
-        createMonster = CreateMonster(1f);
+        createMonster = CreateMonster(0.5f);
 
         StartCoroutine(createMonster);
     }

@@ -83,8 +83,9 @@ public class Monster : MonoBehaviour
     }
     void Dead(float freezeTime, int damage)
     {
-        hitFreezeTimer = freezeTime;
+        hitFreezeTimer = freezeTime;           
         hp -= damage;
+        AudioManager.instance.Play("hit1");
         if (hp <= 0)
         {
             Destroy(GetComponent<Rigidbody2D>());
