@@ -40,7 +40,7 @@ public class Monster : MonoBehaviour
 
         float distance = Vector2.Distance(p.transform.position, transform.position);
 
-        if (distance <= 1)
+        if (distance <= 1) //
         {
             atkTimer += Time.deltaTime;
             //АјАн

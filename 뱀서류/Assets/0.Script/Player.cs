@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public int HP { get; set; }
     public int MaxHP { get; set; }
     public float Speed { get; set; }
-    public float BulletFireDelayTime { get; set; }
+    public float BulletFireDelayTime { get; set; } //차후 개발 시 총기의 연사속도로 재활용?
     public int BulletHitMaxCount { get; set; }
     // Start is called before the first frame update
     void Start()
