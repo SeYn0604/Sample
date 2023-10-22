@@ -44,6 +44,7 @@ public class UI : MonoBehaviour
     [SerializeField] MonsterSpawnController monsterSpawnController;
     [SerializeField] private Player p;
     [SerializeField] private Bullet bullet;
+    public bool isLevelUpPopupActive = false;
     private float maxExp;
     private float exp;
     private int level = 0;
@@ -74,6 +75,7 @@ public class UI : MonoBehaviour
                 AudioManager.instance.Play("levelup");
                 gameState = GameState.Pause;
                 levelUpPopup.gameObject.SetActive(true);
+                isLevelUpPopupActive = true;
                 level++;
                 maxExp = exps[level];
                 sliderExp.value = 0f;
@@ -193,5 +195,7 @@ public class UI : MonoBehaviour
                 SetHP(p.HP,p.MaxHP);
                 break;
         }
+        levelUpPopup.gameObject.SetActive(false);
+        isLevelUpPopupActive = false;
     }
 }

@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Bullet bullet;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Transform shieldPrefab;
     [SerializeField] private Transform shieldParent;
-    [SerializeField] private Transform firePos;
-    [SerializeField] Bullet bullet;
+    [SerializeField] public Transform firePos;
 
+    public GameObject aimObject;
     float bulletTimer;
     private List<Transform> shields = new List<Transform>();
     int shieldCount, shieldSpeed;
@@ -33,6 +34,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 마우스 위치에 따라 에임 조정
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        Vector2 aimDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        firePos.rotation = Quaternion.Euler(0, 0, angle);
+        //
         if (UI.instance.gameState != GameState.Play)
             return;
         x = Input.GetAxis("Horizontal");
@@ -70,7 +77,7 @@ public class Player : MonoBehaviour
         }
         shieldParent.Rotate(Vector3.back * Time.deltaTime * shieldSpeed);
 
-        Monster[] monsters = FindObjectsOfType<Monster>();
+        /*Monster[] monsters = FindObjectsOfType<Monster>();
         List<Monster> atkMonsterList = new List<Monster>();
         bulletTimer += Time.deltaTime;
 
@@ -98,7 +105,8 @@ public class Player : MonoBehaviour
             }
             bulletTimer = 0;
         }
-        if(Input.GetKeyUp(KeyCode.F4))
+        *///(기존에 있던)랜덤한 좀비에게 자동으로 총알을 발사하는 코드
+        if (Input.GetKeyUp(KeyCode.F4))
         {
             BulletHitMaxCount++;
         }
