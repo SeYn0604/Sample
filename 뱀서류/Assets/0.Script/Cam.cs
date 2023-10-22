@@ -10,7 +10,7 @@ public class Cam : MonoBehaviour
     [SerializeField] public Transform target;
     [SerializeField] public Firearm firearm;
     [SerializeField] public GameObject aimSprite;
-    [SerializeField] public TextMeshProUGUI ammoText;
+    [SerializeField] public Text ammoText;
     [SerializeField] public UI ui;
 
     public float shakeTime;

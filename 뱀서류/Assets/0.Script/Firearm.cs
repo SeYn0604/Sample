@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.UIElements;
 using UnityEngine.SocialPlatforms;
+using Unity.VisualScripting;
 
 public class Firearm : MonoBehaviour
 {
@@ -67,9 +68,8 @@ public class Firearm : MonoBehaviour
         }
         if (currentAmmo > 0)
         {
-            GameObject bullet = Instantiate(bulletPrefab, player.firePos.position, player.firePos.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, player.firePos.position, player.firePos.rotation * Quaternion.Euler(0, 0, -90f));
             currentAmmo--;
-            cam.UpdateAimCursorAndAmmoDisplay();
         }
     }
     IEnumerator ReloadCoroutine()
@@ -83,7 +83,6 @@ public class Firearm : MonoBehaviour
     void Reload()
     {
         currentAmmo = maxAmmo;
-        cam.UpdateAimCursorAndAmmoDisplay();
     }
     private IEnumerator Recoil()
     {

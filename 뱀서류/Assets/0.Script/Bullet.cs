@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         if (UI.instance.gameState != GameState.Play)
             return;
 
-        transform.Translate(Vector3.right * Time.deltaTime * 15f);
+        transform.Translate(Vector3.up * Time.deltaTime * 20f);
     }
     public void SetHitMaxCount(int count)
     {
