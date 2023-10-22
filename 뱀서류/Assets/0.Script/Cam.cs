@@ -7,17 +7,17 @@ public class Cam : MonoBehaviour
 {
     public float xOffset = 15f;
     public float yOffset = 0f;
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
     [SerializeField] public Firearm firearm;
     [SerializeField] public GameObject aimSprite;
     [SerializeField] public TextMeshProUGUI ammoText;
-    [SerializeField] private UI ui;
+    [SerializeField] public UI ui;
 
-    private float shakeTime;
-    private float shakeLevel;
+    public float shakeTime;
+    public float shakeLevel;
 
-    private Vector3 shakeOffset = Vector3.zero;
-    private bool isShaking = false;
+    public Vector3 shakeOffset = Vector3.zero;
+    public bool isShaking = false;
     public bool isLevelUpPopupActive = false;
 
     void Update()
@@ -36,11 +36,10 @@ public class Cam : MonoBehaviour
                 OnCameraShake(0.05f, 0.05f);
             }
         }
-
         UpdateAimCursorAndAmmoDisplay();
     }
 
-    void UpdateAimCursorAndAmmoDisplay() // 장탄 표기가 마우스 에임을 따라가게끔
+    public void UpdateAimCursorAndAmmoDisplay() // 장탄 표기가 마우스 에임을 따라가며 표시
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
         aimSprite.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);

@@ -179,7 +179,7 @@ public class UI : MonoBehaviour
         switch(upgradeDatas[index].sprite.name)
         {
             case "Bullet 0":
-                p.AddShield();
+                //p.AddShield();
                 break;
             case "Select 5":
                 p.BulletFireDelayTime -= p.BulletFireDelayTime * 0.1f;

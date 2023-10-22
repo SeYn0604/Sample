@@ -5,7 +5,6 @@ using UnityEngine;
 public class HPFollow : MonoBehaviour
 {
     RectTransform rect;
-
     public GameObject player;  // 플레이어 객체를 직접 참조하도록 public 변수 추가
 
     private void Awake()

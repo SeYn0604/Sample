@@ -11,11 +11,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform shieldPrefab;
     [SerializeField] private Transform shieldParent;
     [SerializeField] public Transform firePos;
+    [SerializeField] public Transform flippedFirePos;
 
     public GameObject aimObject;
     float bulletTimer;
     private List<Transform> shields = new List<Transform>();
-    int shieldCount, shieldSpeed;
+    //int shieldCount, shieldSpeed;
     float x, y;
     public int HP { get; set; }
     public int MaxHP { get; set; }
@@ -26,9 +27,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         Speed = 3f;
-        BulletFireDelayTime = 2f;
         HP = MaxHP = 100;
-        shieldSpeed = 10;
+        //shieldSpeed = 10;
+        //BulletFireDelayTime = 2f;
     }
 
     // Update is called once per frame
@@ -39,6 +40,14 @@ public class Player : MonoBehaviour
         Vector2 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         firePos.rotation = Quaternion.Euler(0, 0, angle);
+        if (aimDirection.x < 0) //왼쪽방향
+        {
+            sr.flipX = true;
+        }
+        else if (aimDirection.x > 0) // 오른쪽방향
+        {
+            sr.flipX = false;
+        }
         //
         if (UI.instance.gameState != GameState.Play)
             return;
@@ -47,15 +56,7 @@ public class Player : MonoBehaviour
 
         transform.Translate(new Vector3(x, y, 0f) * Time.deltaTime * Speed);
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))  
-        {
-            sr.flipX = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            sr.flipX= false;
-        }
-        if(x == 0 && y == 0)
+        if (x == 0 && y == 0)
         {
             animator.SetBool("Run", false);
         }
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
         }
         //else dead 조건 추가해야됌
 
-        if(Input.GetKeyDown(KeyCode.F2))
+        /*if(Input.GetKeyDown(KeyCode.F2))
         {
             shieldCount++;
             shields.Add(Instantiate(shieldPrefab, shieldParent));
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
             shieldSpeed += 10;
         }
         shieldParent.Rotate(Vector3.back * Time.deltaTime * shieldSpeed);
-
+        *///(기존에 있던)삽쉴드 개발자 치트키 코드
         /*Monster[] monsters = FindObjectsOfType<Monster>();
         List<Monster> atkMonsterList = new List<Monster>();
         bulletTimer += Time.deltaTime;
@@ -106,25 +107,13 @@ public class Player : MonoBehaviour
             bulletTimer = 0;
         }
         *///(기존에 있던)랜덤한 좀비에게 자동으로 총알을 발사하는 코드
-        if (Input.GetKeyUp(KeyCode.F4))
-        {
-            BulletHitMaxCount++;
-        }
     }
     public void Hit(int damage)
     {
         HP -= damage;
         UI.instance.SetHP(HP, MaxHP);
     }
-    public void Shield()
-    {
-        float z = 360 / shieldCount;
-        for (int i = 0; i < shieldCount; i++)
-        {
-            shields[i].gameObject.SetActive(true);
-            shields[i].rotation = Quaternion.Euler(0, 0, z * i);
-        }
-    }
+    
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.GetComponent<Item>())
@@ -137,11 +126,20 @@ public class Player : MonoBehaviour
     {
         UI.instance.Exp += exp;
     }
+    /*public void Shield()
+    {
+        float z = 360 / shieldCount;
+        for (int i = 0; i < shieldCount; i++)
+        {
+            shields[i].gameObject.SetActive(true);
+            shields[i].rotation = Quaternion.Euler(0, 0, z * i);
+        }
+    }
     public void AddShield()
     {
         shieldCount++;
         shields.Add(Instantiate(shieldPrefab, shieldParent));
         Shield();
         shieldSpeed += 10;
-    }
+    }*///(기존에 있던)삽쉴드 코드
 }

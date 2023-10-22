@@ -81,7 +81,7 @@ public class Monster : MonoBehaviour
             Dead(1f, 100);
         }
     }
-    void Dead(float freezeTime, int damage)
+    public void Dead(float freezeTime, int damage)
     {
         hitFreezeTimer = freezeTime;           
         hp -= damage;
