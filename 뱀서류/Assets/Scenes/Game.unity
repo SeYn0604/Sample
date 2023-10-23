@@ -5058,7 +5058,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304219222}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
@@ -5834,11 +5834,10 @@ MonoBehaviour:
     description1: {fileID: 1277686379}
     description2: {fileID: 1814040301}
   upData:
-  - sprite: {fileID: 1737672109, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    title: "\uC0BD\uC274\uB4DC"
-    description1: "\uC0BD \uAC1C\uC218 +1, \uD68C\uC804 \uC18D\uB3C4 + 10%"
-    description2: "\uD50C\uB808\uC774\uC5B4 \uC8FC\uC704\uB97C \uB3CC\uBA70 \uD50C\uB808\uC774\uC5B4\uB97C
-      \uBCF4\uD638"
+  - sprite: {fileID: 1997828774, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+    title: "\uCFF0\uCC99\uCFF0\uCC99"
+    description1: "\uC544\uC774\uD15C \uD68D\uB4DD \uBC18\uACBD \uC99D\uAC00"
+    description2: "\uC544\uC774\uD15C \uD68D\uB4DD \uBC18\uACBD *1.1"
   - sprite: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
     title: "\uC800\uACA9"
     description1: "\uACF5\uACA9\uB825 +10 %, \uBAB9 \uAD00\uD1B5 \uAC1C\uCCB4\uC218
@@ -5868,6 +5867,7 @@ MonoBehaviour:
   monsterSpawnController: {fileID: 1136823884}
   p: {fileID: 1853127463}
   bullet: {fileID: 0}
+  coinDetector: {fileID: 0}
   isLevelUpPopupActive: 0
 --- !u!1 &523195522
 GameObject:
@@ -21611,6 +21611,7 @@ MonoBehaviour:
   shieldParent: {fileID: 505449712}
   firePos: {fileID: 1490724350}
   flippedFirePos: {fileID: 2007339624}
+  pickupRange: 1
   aimObject: {fileID: 2007339623}
 --- !u!212 &1853127464
 SpriteRenderer:
@@ -21680,6 +21681,7 @@ Transform:
   - {fileID: 505449712}
   - {fileID: 1490724350}
   - {fileID: 2007339624}
+  - {fileID: 2060387230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1853127466
@@ -22186,6 +22188,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055631940}
   m_CullTransparentMesh: 1
+--- !u!1 &2060387229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060387230}
+  - component: {fileID: 2060387231}
+  m_Layer: 0
+  m_Name: CoinDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2060387230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060387229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1853127465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2060387231
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060387229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2127300594
 GameObject:
   m_ObjectHideFlags: 0
@@ -22346,5 +22425,5 @@ SceneRoots:
   - {fileID: 1839820854}
   - {fileID: 1020463968}
   - {fileID: 511261927}
-  - {fileID: 1994610731}
   - {fileID: 1211429792}
+  - {fileID: 1994610731}

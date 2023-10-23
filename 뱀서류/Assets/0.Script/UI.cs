@@ -44,14 +44,21 @@ public class UI : MonoBehaviour
     [SerializeField] MonsterSpawnController monsterSpawnController;
     [SerializeField] private Player p;
     [SerializeField] private Bullet bullet;
+    public GameObject coinDetector;
     public bool isLevelUpPopupActive = false;
     private float maxExp;
     private float exp;
     private int level = 0;
-    private float timer = 0;  
+    private float timer = 0;
     private int killCount = 0;
     private float[] exps;
     private List<UpgradeData> upgradeDatas = new List<UpgradeData>();
+    private Dictionary<string, (int current, int max)> upgradeCounters = new Dictionary<string, (int, int)> //현재업그레이드/최대업그레이드 관리
+    {
+        {"Mag", (0, 5)},//아이템 획득반경 최초0 최대5
+        {"Select 7", (0, 3)},//이동속도 최초0 최대3
+    };
+
     public void Awake()
     {
         instance = this;
@@ -69,7 +76,7 @@ public class UI : MonoBehaviour
             exp = value;
             sliderExp.value = exp / maxExp;
 
-            if(exp >= maxExp)
+            if (exp >= maxExp)
             {
                 SetUpgradeData();
                 AudioManager.instance.Play("levelup");
@@ -101,33 +108,33 @@ public class UI : MonoBehaviour
         OnGameStart();
         maxExp = exps[level];
         sliderExp.value = 0f;
-         for (int i = 0; i < boxColls.Length; i++)
-         {
-             Vector2 v1 = canvas.sizeDelta;
-             if (i < 2)
-                 v1.y = 5;
-             else
-                 v1.x = 5;
-             boxColls[i].size = v1;
-         }
+        for (int i = 0; i < boxColls.Length; i++)
+        {
+            Vector2 v1 = canvas.sizeDelta;
+            if (i < 2)
+                v1.y = 5;
+            else
+                v1.x = 5;
+            boxColls[i].size = v1;
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F5)) 
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             gameState = GameState.Play;
         }
-        if(Input.GetKey(KeyCode.F1))
+        if (Input.GetKey(KeyCode.F1))
         {
             Exp += 1f;
         }
-        if(gameState != GameState.Play)
+        if (gameState != GameState.Play)
         {
-            monsterSpawnController.StartSpawn(false); 
+            monsterSpawnController.StartSpawn(false);
             return;
         }
-            
+
         timer += Time.deltaTime;
         System.TimeSpan ts = System.TimeSpan.FromSeconds(timer);
         txtTime.text = string.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
@@ -143,29 +150,29 @@ public class UI : MonoBehaviour
     }
     void SetUpgradeData()
     {
-        List<UpgradeData> datas = new List<UpgradeData>();
-        for (int i = 0; i < upData.Length; i++)
+        List<UpgradeData> datas = new List<UpgradeData>(upData);
+
+        // 최대 업그레이드 회수에 도달한 항목 배제
+        foreach (var entry in upgradeCounters)
         {
-            UpgradeData ud = new UpgradeData();
-            ud.sprite = upData[i].sprite;
-            ud.title = upData[i].title;
-            ud.description1 = upData[i].description1;
-            ud.description2 = upData[i].description2;
-            datas.Add(ud);
+            if (entry.Value.current >= entry.Value.max)
+            {
+                datas.RemoveAll(data => data.sprite.name == entry.Key);
+            }
         }
 
-        upgradeDatas = new List<UpgradeData>();
+        // 업그레이드 데이터 랜덤 설정
+        upgradeDatas.Clear();
         for (int i = 0; i < 3; i++)
         {
+            if (datas.Count == 0) break;  // 더 이상 선택할 수 있는 업그레이드가 없으면 루프 종료
+
             int rand = Random.Range(0, datas.Count);
-            UpgradeData ud = new UpgradeData();
-            ud.sprite = datas[rand].sprite;
-            ud.title = datas[rand].title;
-            ud.description1 = datas[rand].description1;
-            ud.description2 = datas[rand].description2;
-            upgradeDatas.Add(ud);
+            upgradeDatas.Add(datas[rand]);
             datas.RemoveAt(rand);
         }
+
+        // UI 업데이트
         for (int i = 0; i < upgradeDatas.Count; i++)
         {
             upUI[i].icon.sprite = upgradeDatas[i].sprite;
@@ -174,28 +181,42 @@ public class UI : MonoBehaviour
             upUI[i].description2.text = upgradeDatas[i].description2;
         }
     }
+
     public void OnUpgrade(int index)
     {
-        switch(upgradeDatas[index].sprite.name)
+        string upgradeName = upgradeDatas[index].sprite.name;
+        switch (upgradeName)
         {
-            case "Bullet 0":
-                //p.AddShield();
+            case "Mag":
+                GameObject coinDetector = GameObject.Find("CoinDetector");
+                coinDetector.transform.localScale = new Vector3(coinDetector.transform.localScale.x * 1.5f, coinDetector.transform.localScale.y * 1.5f, coinDetector.transform.localScale.z * 1.5f);
+                UpgradeCounter(upgradeName);
                 break;
             case "Select 5":
                 p.BulletFireDelayTime -= p.BulletFireDelayTime * 0.1f;
                 p.BulletHitMaxCount++;
                 break;
-            case "Select 6":
-                break;
             case "Select 7":
-                p.Speed += 2f;
+                p.Speed += 0.5f;
+                UpgradeCounter(upgradeName);
                 break;
             case "Select 8":
                 p.HP = p.MaxHP;
-                SetHP(p.HP,p.MaxHP);
+                SetHP(p.HP, p.MaxHP);
                 break;
         }
+
         levelUpPopup.gameObject.SetActive(false);
         isLevelUpPopupActive = false;
+    }
+
+    // 업그레이드 카운터 증가 함수
+    void UpgradeCounter(string upgradeName)
+    {
+        if (upgradeCounters.ContainsKey(upgradeName))
+        {
+            var currentValue = upgradeCounters[upgradeName];
+            upgradeCounters[upgradeName] = (currentValue.current + 1, currentValue.max);
+        }
     }
 }

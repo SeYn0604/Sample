@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform shieldParent;
     [SerializeField] public Transform firePos;
     [SerializeField] public Transform flippedFirePos;
-
+    public float pickupRange = 1.0f;
     public GameObject aimObject;
     float bulletTimer;
     private List<Transform> shields = new List<Transform>();
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
         if(collision.GetComponent<Item>())
         {
             collision.GetComponent<Item>().isPickup = true;
-            collision.GetComponent<Item>().target = this;
+            collision.GetComponent<Item>().p = this;
         }
     }
     public void GetExp(int exp)
@@ -143,3 +143,4 @@ public class Player : MonoBehaviour
         shieldSpeed += 10;
     }*///(±âÁ¸¿¡ ÀÖ´ø)»ð½¯µå ÄÚµå
 }
+

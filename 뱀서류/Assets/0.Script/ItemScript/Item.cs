@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public enum FieldDropItem
 {
     ExpCoin,
@@ -12,12 +13,17 @@ public class Item : MonoBehaviour
     protected FieldDropItem type = FieldDropItem.ExpCoin;
     public FieldDropItem dropItem;
     public bool isPickup = false;
-    public Player target;
+    public Player p;
+    public GameObject player;
+    public GameObject coinDetectorTarget;
     // Start is called before the first frame update
-    void Start()
-    {
+void Start()
+{
+    coinDetectorTarget = GameObject.Find("CoinDetector");
+    player = GameObject.Find("[[Player]]");
+    p = player.GetComponent<Player>();
+}
 
-    }
     // Update is called once per frame
     void Update()
     {
@@ -25,13 +31,13 @@ public class Item : MonoBehaviour
             return;
         if (isPickup)
         {
-            Vector2 v1 = (target.transform.position - transform.position).normalized * Time.deltaTime * 5f;
+            Vector2 v1 = (coinDetectorTarget.transform.position - transform.position).normalized * Time.deltaTime * 3f; //아이템이 플레이어 따라가는 속도
             transform.Translate(v1);
-            if (Vector3.Distance(transform.position, target.transform.position)<0.1f)
+            if (Vector3.Distance(transform.position, coinDetectorTarget.transform.position) < 1f ) 
             {
                 if (FieldDropItem.ExpCoin == dropItem)
                 {
-                    target.GetExp(1);
+                    p.GetExp(1);
                 }
                 else
                 {
@@ -40,7 +46,7 @@ public class Item : MonoBehaviour
                     {
                         if (item.dropItem == FieldDropItem.Mag)
                             continue;
-                        item.target = target;
+                        item.coinDetectorTarget = coinDetectorTarget;
                         item.isPickup = true;
                     }
                 }
