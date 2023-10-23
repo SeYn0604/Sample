@@ -31,7 +31,7 @@ void Start()
             return;
         if (isPickup)
         {
-            Vector2 v1 = (coinDetectorTarget.transform.position - transform.position).normalized * Time.deltaTime * 3f; //아이템이 플레이어 따라가는 속도
+            Vector2 v1 = (coinDetectorTarget.transform.position - transform.position).normalized * Time.deltaTime * 7f; //아이템이 플레이어 따라가는 속도
             transform.Translate(v1);
             if (Vector3.Distance(transform.position, coinDetectorTarget.transform.position) < 1f ) 
             {
