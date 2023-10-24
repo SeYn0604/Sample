@@ -16,7 +16,7 @@ public class ThrowingWeapon : MonoBehaviour
     public Sprite throwingWeaponSprite;
     public GameObject throwingObjectPrefab;
 
-    private bool isDestroyed = false;  // 추가된 변수
+    private bool isDestroyed = false;  
 
     private void Start()
     {
