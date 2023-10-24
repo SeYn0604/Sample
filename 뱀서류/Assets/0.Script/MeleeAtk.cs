@@ -9,7 +9,7 @@ public class MeleeAtk : MonoBehaviour
     [SerializeField] private Image coolDownTimer;
     private BoxCollider2D boxCollider;
     private float cooldownTimer;
-    public float cooldown = 5f;
+    public float cooldown = 60f;
     public GameObject player;
     private RectTransform rect;
     public GameObject skillEffect;
@@ -26,7 +26,7 @@ public class MeleeAtk : MonoBehaviour
     {
         if (cooldownTimer > 0)
         {
-            cooldownTimer -= Time.deltaTime * 50f;
+            cooldownTimer -= Time.deltaTime;
             Debug.Log(cooldownTimer);
         }
 
