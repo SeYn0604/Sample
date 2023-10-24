@@ -39,7 +39,7 @@ public class Cam : MonoBehaviour
         UpdateAimCursorAndAmmoDisplay();
     }
 
-    public void UpdateAimCursorAndAmmoDisplay() // ÀåÅº Ç¥±â°¡ ¸¶¿ì½º ¿¡ÀÓÀ» µû¶ó°¡¸ç Ç¥½Ã
+    public void UpdateAimCursorAndAmmoDisplay() // ì¥íƒ„ í‘œê¸°ê°€ ë§ˆìš°ìŠ¤ ì—ì„ì„ ë”°ë¼ê°€ë©° í‘œì‹œ
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
         aimSprite.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);

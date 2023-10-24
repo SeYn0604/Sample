@@ -31,38 +31,38 @@ public class Firearm : MonoBehaviour
     void Update()
     {
         worldOriginalPosition = transform.parent.TransformPoint(originalPosition);
-        // RÅ°¸¦ ´©¸£¸é ÀçÀåÀü
+        // Rí‚¤ë¥¼ ëˆ„ë¥´ë©´ ì¬ì¥ì „
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ui.gameState == GameState.Play)
         {
             StartCoroutine(ReloadCoroutine());
         }
 
-        // ÁÂÅ¬¸¯À» ´©¸£¸é ¹ß»ç
+        // ì¢Œí´ë¦­ì„ ëˆ„ë¥´ë©´ ë°œì‚¬
         if (Input.GetMouseButtonDown(0) && !isReloading && !isRecoiling)
         {
             StartCoroutine(Recoil());
             Fire();
         }
-        //¸¶¿ì½º Ä¿¼­ À§Ä¡¿¡ µû¶ó È¸Àü(ÇÃ·¹ÀÌ¾îÀÇ flip°ú µ¿ÀÏ)
+        //ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ì— ë”°ë¼ íšŒì „(í”Œë ˆì´ì–´ì˜ flipê³¼ ë™ì¼)
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Vector2 aimDirection = (mousePosition - player.transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         weaponSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        if (aimDirection.x < 0) //¿ŞÂÊº¼¶§
+        if (aimDirection.x < 0) //ì™¼ìª½ë³¼ë•Œ
         {
             weaponSprite.flipY = true;
             weaponSprite.transform.localPosition = new Vector3(0.157f, -0.256f, 0);
         }
-        else if (aimDirection.x > 0) //¿À¸¥ÂÊº¼¶§
+        else if (aimDirection.x > 0) //ì˜¤ë¥¸ìª½ë³¼ë•Œ
         {
             weaponSprite.flipY = false;
             weaponSprite.transform.localPosition = new Vector3(-0.157f, -0.256f, 0);
         }
     }
-    void Fire()// ÅºÈ¯ ÇÁ¸®ÆÕ »ı¼º ¹× ¹ß»ç
+    void Fire()// íƒ„í™˜ í”„ë¦¬íŒ¹ ìƒì„± ë° ë°œì‚¬
     {
-        if(ui.gameState != GameState.Play) //·¹º§¾÷ ÇØ¼­ ÆË¾÷Ã¢ ¶ã½Ã ÇÔ¼ö ºñÈ°¼ºÈ­
+        if(ui.gameState != GameState.Play) //ë ˆë²¨ì—… í•´ì„œ íŒì—…ì°½ ëœ°ì‹œ í•¨ìˆ˜ ë¹„í™œì„±í™”
         {
             return;
         }
@@ -75,7 +75,7 @@ public class Firearm : MonoBehaviour
     IEnumerator ReloadCoroutine()
     {
         isReloading = true;
-        float reloadTime = 2f; // ÀÌÈÄ ·¹º§¾÷ µî ½ºÆå¾÷ ¿ä¼Ò ±¸Çö ½Ã ¾î¶»°Ô??
+        float reloadTime = 2f; // ì´í›„ ë ˆë²¨ì—… ë“± ìŠ¤í™ì—… ìš”ì†Œ êµ¬í˜„ ì‹œ ì–´ë–»ê²Œ??
         yield return new WaitForSeconds(reloadTime);
         Reload();
         isReloading = false;

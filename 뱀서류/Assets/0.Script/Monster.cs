@@ -43,7 +43,7 @@ public class Monster : MonoBehaviour
         if (distance <= 1) //
         {
             atkTimer += Time.deltaTime;
-            //°ø°Ý
+            //ê³µê²©
             if (atkTimer > atkTime)
             {
                 atkTimer = 0;
@@ -52,7 +52,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            //ÀÌµ¿
+            //ì´ë™
             if (hp > 0)
             {
                 Vector2 v1 = (p.transform.position - transform.position).normalized * Time.deltaTime * 1f;

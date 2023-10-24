@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public int HP { get; set; }
     public int MaxHP { get; set; }
     public float Speed { get; set; }
-    public float BulletFireDelayTime { get; set; } //Â÷ÈÄ °³¹ß ½Ã ÃÑ±âÀÇ ¿¬»ç¼Óµµ·Î ÀçÈ°¿ë?
+    public float BulletFireDelayTime { get; set; } //ì°¨í›„ ê°œë°œ ì‹œ ì´ê¸°ì˜ ì—°ì‚¬ì†ë„ë¡œ ì¬í™œìš©?
     public int BulletHitMaxCount { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -35,16 +35,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ¸¶¿ì½º À§Ä¡¿¡ µû¶ó ¿¡ÀÓ Á¶Á¤
+        // ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì— ë”°ë¼ ì—ì„ ì¡°ì •
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         Vector2 aimDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         firePos.rotation = Quaternion.Euler(0, 0, angle);
-        if (aimDirection.x < 0) //¿ŞÂÊ¹æÇâ
+        if (aimDirection.x < 0) //ì™¼ìª½ë°©í–¥
         {
             sr.flipX = true;
         }
-        else if (aimDirection.x > 0) // ¿À¸¥ÂÊ¹æÇâ
+        else if (aimDirection.x > 0) // ì˜¤ë¥¸ìª½ë°©í–¥
         {
             sr.flipX = false;
         }
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Run", true);
         }
-        //else dead Á¶°Ç Ãß°¡ÇØ¾ß‰Î
+        //else dead ì¡°ê±´ ì¶”ê°€í•´ì•¼ëŒ
 
         /*if(Input.GetKeyDown(KeyCode.F2))
         {
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
             shieldSpeed += 10;
         }
         shieldParent.Rotate(Vector3.back * Time.deltaTime * shieldSpeed);
-        *///(±âÁ¸¿¡ ÀÖ´ø)»ğ½¯µå °³¹ßÀÚ Ä¡Æ®Å° ÄÚµå
+        *///(ê¸°ì¡´ì— ìˆë˜)ì‚½ì‰´ë“œ ê°œë°œì ì¹˜íŠ¸í‚¤ ì½”ë“œ
         /*Monster[] monsters = FindObjectsOfType<Monster>();
         List<Monster> atkMonsterList = new List<Monster>();
         bulletTimer += Time.deltaTime;
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             if(atkMonsterList.Count > 0)
             {
                 Monster m = atkMonsterList[Random.Range(0,atkMonsterList.Count)];
-                //Å¸°ÙÀ» Ã£¾Æ ¹æÇâ ÀüÈ¯
+                //íƒ€ê²Ÿì„ ì°¾ì•„ ë°©í–¥ ì „í™˜
                 Vector2 vec = transform.position - m.transform.position;
                 float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
                 firePos.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
             }
             bulletTimer = 0;
         }
-        *///(±âÁ¸¿¡ ÀÖ´ø)·£´ıÇÑ Á»ºñ¿¡°Ô ÀÚµ¿À¸·Î ÃÑ¾ËÀ» ¹ß»çÇÏ´Â ÄÚµå
+        *///(ê¸°ì¡´ì— ìˆë˜)ëœë¤í•œ ì¢€ë¹„ì—ê²Œ ìë™ìœ¼ë¡œ ì´ì•Œì„ ë°œì‚¬í•˜ëŠ” ì½”ë“œ
     }
     public void Hit(int damage)
     {
@@ -141,6 +141,6 @@ public class Player : MonoBehaviour
         shields.Add(Instantiate(shieldPrefab, shieldParent));
         Shield();
         shieldSpeed += 10;
-    }*///(±âÁ¸¿¡ ÀÖ´ø)»ğ½¯µå ÄÚµå
+    }*///(ê¸°ì¡´ì— ìˆë˜)ì‚½ì‰´ë“œ ì½”ë“œ
 }
 

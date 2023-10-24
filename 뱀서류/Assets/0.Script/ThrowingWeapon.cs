@@ -16,7 +16,7 @@ public class ThrowingWeapon : MonoBehaviour
     public Sprite throwingWeaponSprite;
     public GameObject throwingObjectPrefab;
 
-    private bool isDestroyed = false;  //�ߵǳ�Ȯ�ο�
+    private bool isDestroyed = false;  //잘되나확인용
 
     private void Start()
     {

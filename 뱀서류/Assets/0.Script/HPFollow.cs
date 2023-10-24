@@ -5,7 +5,7 @@ using UnityEngine;
 public class HPFollow : MonoBehaviour
 {
     RectTransform rect;
-    public GameObject player;  // ÇÃ·¹ÀÌ¾î °´Ã¼¸¦ Á÷Á¢ ÂüÁ¶ÇÏµµ·Ï public º¯¼ö Ãß°¡
+    public GameObject player;  // í”Œë ˆì´ì–´ ê°ì²´ë¥¼ ì§ì ‘ ì°¸ì¡°í•˜ë„ë¡ public ë³€ìˆ˜ ì¶”ê°€
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class HPFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player != null)  // ÇÃ·¹ÀÌ¾î°¡ ÇÒ´çµÇ¾î ÀÖÀ» ¶§¸¸ ½ÇÇà
+        if (player != null)  // í”Œë ˆì´ì–´ê°€ í• ë‹¹ë˜ì–´ ìˆì„ ë•Œë§Œ ì‹¤í–‰
         {
             Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y - 0.81f, player.transform.position.z);
             rect.position = newPosition;

@@ -41,7 +41,7 @@ public class MeleeAtk : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (player != null)  // ÇÃ·¹ÀÌ¾î°¡ ÇÒ´çµÇ¾î ÀÖÀ» ¶§¸¸ ½ÇÇà
+        if (player != null)  // í”Œë ˆì´ì–´ê°€ í• ë‹¹ë˜ì–´ ìˆì„ ë•Œë§Œ ì‹¤í–‰
         {
             Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
             rect.position = newPosition;
