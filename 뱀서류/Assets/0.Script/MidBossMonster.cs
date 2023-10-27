@@ -72,7 +72,7 @@ public class MidBossMonster : MonoBehaviour
         else if (distance <= 1) //
         {
             atkTimer += Time.deltaTime;
-            //공격
+
             if (atkTimer > atkTime)
             {
                 atkTimer = 0;
