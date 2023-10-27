@@ -27,7 +27,6 @@ public class MeleeAtk : MonoBehaviour
         if (cooldownTimer > 0)
         {
             cooldownTimer -= Time.deltaTime;
-            Debug.Log(cooldownTimer);
         }
 
         coolDownTimer.fillAmount = 1 - (cooldownTimer / cooldown);

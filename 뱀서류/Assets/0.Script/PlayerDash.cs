@@ -23,7 +23,7 @@ public class PlayerDash : MonoBehaviour
 
         makeGhost = true;
         float timeElapsed = 0f;
-        float dashDuration = 0.5f;
+        float dashDuration = 1;
 
         while (timeElapsed < dashDuration)
         {

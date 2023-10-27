@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] private Player p;
+    [SerializeField] public Player p;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject expPrefab;
     [SerializeField] private GameObject magPrefab;
  
-    float hp;
+    public float hp;
     protected float atkTime = 2f;
     protected int power = 6;
     private float atkTimer;
     private float hitFreezeTimer;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
+        hp = 100;
         hp = 100;
     }
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (UI.instance.gameState != GameState.Play)
             return;
@@ -33,7 +34,6 @@ public class Monster : MonoBehaviour
             return;
         }
         
-
         float x = p.transform.position.x - transform.position.x;
 
         sr.flipX = x < 0 ? true : x == 0 ? true : false;
@@ -66,13 +66,8 @@ public class Monster : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Shield>())
-        {
-            Dead(0.5f, 30);
-        }
-        if(collision.GetComponent<Bullet>())
-        {
-            
+        if(collision.gameObject.tag == "Player" && collision.GetComponent<Bullet>())
+        {  
             collision.GetComponent<Bullet>().HitCount++;
             if(collision.GetComponent <Bullet>().HitCount >= collision.GetComponent<Bullet>().HitMaxCount)
             {
@@ -81,7 +76,7 @@ public class Monster : MonoBehaviour
             Dead(1f, 100);
         }
     }
-    public void Dead(float freezeTime, int damage)
+    public virtual void Dead(float freezeTime, int damage)
     {
         hitFreezeTimer = freezeTime;           
         hp -= damage;

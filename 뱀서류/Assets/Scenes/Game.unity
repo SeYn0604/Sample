@@ -4995,7 +4995,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5867,7 +5867,7 @@ MonoBehaviour:
   monsterSpawnController: {fileID: 1136823884}
   p: {fileID: 1853127463}
   bullet: {fileID: 0}
-  coinDetector: {fileID: 0}
+  coinDetector: {fileID: 2060387229}
   isLevelUpPopupActive: 0
 --- !u!1 &523195522
 GameObject:
@@ -11150,6 +11150,7 @@ MonoBehaviour:
   - {fileID: 1712597438}
   - {fileID: 1746024854}
   - {fileID: 708852131}
+  MidBossPrefab: {fileID: 3016354637366295150, guid: 2d5de9ec68fee4e4cb3016f3677fa621, type: 3}
 --- !u!1 &1143944662
 GameObject:
   m_ObjectHideFlags: 0
@@ -21714,7 +21715,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1853127465}
   - component: {fileID: 1853127464}
-  - component: {fileID: 1853127468}
   - component: {fileID: 1853127469}
   - component: {fileID: 1853127463}
   - component: {fileID: 1853127461}
@@ -21874,7 +21874,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.49
 --- !u!50 &1853127467
 Rigidbody2D:
   serializedVersion: 4
@@ -21902,32 +21902,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &1853127468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853127460}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4d0f0e86446a94b82e25e5bb655ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1853127463}
-  ui: {fileID: 511261928}
-  weaponSprite: {fileID: 2007339625}
-  bulletPrefab: {fileID: 2471339503847567131, guid: bc8e159ab0e640d4abd34a5afed0b28e, type: 3}
-  ammoText: {fileID: 337644361}
-  maxAmmo: 10
-  currentAmmo: 0
-  isReloading: 0
-  recoilDuration: 0.1
-  recoilIntensity: 0.1
-  originalPosition: {x: 0, y: 0, z: 0}
-  isRecoiling: 0
-  worldOriginalPosition: {x: 0, y: 0, z: 0}
-  cam: {fileID: 304219226}
 --- !u!114 &1853127469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22355,7 +22329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060387230}
   - component: {fileID: 2060387231}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CoinDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22420,7 +22394,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
 --- !u!1 &2127300594
 GameObject:

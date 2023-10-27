@@ -9,13 +9,20 @@ public class MonsterSpawnController : MonoBehaviour
     [SerializeField] private Monster monster;
     [SerializeField] private Transform parent;
     [SerializeField] private BoxCollider2D[] boxColls;
+    [SerializeField] private GameObject MidBossPrefab;
     IEnumerator createMonster;
     int range = 10;
     void Awake()
     {
-        createMonster = CreateMonster(0.5f);
-
-        StartCoroutine(createMonster);
+        //createMonster = CreateMonster(0.5f);
+        //StartCoroutine(createMonster);
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
+            Instantiate(MidBossPrefab);
+        }
     }
     IEnumerator CreateMonster(float time)
     {
@@ -41,7 +48,7 @@ public class MonsterSpawnController : MonoBehaviour
         {
             randPos = new Vector2(pos.position.x + Random.Range(-range, range), pos.position.y);
         }
-        // ³ª¸ÓÁö
+        // ë‚˜ë¨¸ì§€
         else
         {
             randPos = new Vector2(pos.position.x, pos.position.y + Random.Range(-range, range));
@@ -51,9 +58,9 @@ public class MonsterSpawnController : MonoBehaviour
     }
     public void StartSpawn(bool start)
     {
-        if (start)
+        /*if (start)
             StartCoroutine(createMonster);
         else
             StopCoroutine(createMonster);
-    }
+    */}
 }

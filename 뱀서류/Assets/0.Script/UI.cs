@@ -53,10 +53,10 @@ public class UI : MonoBehaviour
     private int killCount = 0;
     private float[] exps;
     private List<UpgradeData> upgradeDatas = new List<UpgradeData>();
-    private Dictionary<string, (int current, int max)> upgradeCounters = new Dictionary<string, (int, int)> //ÇöÀç¾÷±×·¹ÀÌµå/ÃÖ´ë¾÷±×·¹ÀÌµå °ü¸®
+    private Dictionary<string, (int current, int max)> upgradeCounters = new Dictionary<string, (int, int)> //í˜„ì¬ì—…ê·¸ë ˆì´ë“œ/ìµœëŒ€ì—…ê·¸ë ˆì´ë“œ ê´€ë¦¬
     {
-        {"Mag", (0, 5)},//¾ÆÀÌÅÛ È¹µæ¹İ°æ ÃÖÃÊ0 ÃÖ´ë5
-        {"Select 7", (0, 3)},//ÀÌµ¿¼Óµµ ÃÖÃÊ0 ÃÖ´ë3
+        {"Mag", (0, 5)},//ì•„ì´í…œ íšë“ë°˜ê²½ ìµœì´ˆ0 ìµœëŒ€5
+        {"Select 7", (0, 3)},//ì´ë™ì†ë„ ìµœì´ˆ0 ìµœëŒ€3
     };
 
     public void Awake()
@@ -152,7 +152,7 @@ public class UI : MonoBehaviour
     {
         List<UpgradeData> datas = new List<UpgradeData>(upData);
 
-        // ÃÖ´ë ¾÷±×·¹ÀÌµå È¸¼ö¿¡ µµ´ŞÇÑ Ç×¸ñ ¹èÁ¦
+        // ìµœëŒ€ ì—…ê·¸ë ˆì´ë“œ íšŒìˆ˜ì— ë„ë‹¬í•œ í•­ëª© ë°°ì œ
         foreach (var entry in upgradeCounters)
         {
             if (entry.Value.current >= entry.Value.max)
@@ -161,18 +161,18 @@ public class UI : MonoBehaviour
             }
         }
 
-        // ¾÷±×·¹ÀÌµå µ¥ÀÌÅÍ ·£´ı ¼³Á¤
+        // ì—…ê·¸ë ˆì´ë“œ ë°ì´í„° ëœë¤ ì„¤ì •
         upgradeDatas.Clear();
         for (int i = 0; i < 3; i++)
         {
-            if (datas.Count == 0) break;  // ´õ ÀÌ»ó ¼±ÅÃÇÒ ¼ö ÀÖ´Â ¾÷±×·¹ÀÌµå°¡ ¾øÀ¸¸é ·çÇÁ Á¾·á
+            if (datas.Count == 0) break;  // ë” ì´ìƒ ì„ íƒí•  ìˆ˜ ìˆëŠ” ì—…ê·¸ë ˆì´ë“œê°€ ì—†ìœ¼ë©´ ë£¨í”„ ì¢…ë£Œ
 
             int rand = Random.Range(0, datas.Count);
             upgradeDatas.Add(datas[rand]);
             datas.RemoveAt(rand);
         }
 
-        // UI ¾÷µ¥ÀÌÆ®
+        // UI ì—…ë°ì´íŠ¸
         for (int i = 0; i < upgradeDatas.Count; i++)
         {
             upUI[i].icon.sprite = upgradeDatas[i].sprite;
@@ -210,7 +210,7 @@ public class UI : MonoBehaviour
         isLevelUpPopupActive = false;
     }
 
-    // ¾÷±×·¹ÀÌµå Ä«¿îÅÍ Áõ°¡ ÇÔ¼ö
+    // ì—…ê·¸ë ˆì´ë“œ ì¹´ìš´í„° ì¦ê°€ í•¨ìˆ˜
     void UpgradeCounter(string upgradeName)
     {
         if (upgradeCounters.ContainsKey(upgradeName))

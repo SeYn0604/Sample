@@ -113,15 +113,28 @@ public class Player : MonoBehaviour
         HP -= damage;
         UI.instance.SetHP(HP, MaxHP);
     }
-    
-    public void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<Item>())
+        if (collision.tag == "Monster")
         {
-            collision.GetComponent<Item>().isPickup = true;
-            collision.GetComponent<Item>().p = this;
+            Bullet bullet = collision.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                Hit(10); // 플레이어에게 10의 데미지를 입힙니다.
+                Destroy(collision.gameObject); // 총알을 제거합니다.
+            }
+        }
+        else if (collision.tag == "Mag"|| collision.tag == "Exp")
+        {
+            Item item = collision.GetComponent<Item>();
+            if (item != null)
+            {
+                item.isPickup = true;
+                item.p = this;
+            }
         }
     }
+
     public void GetExp(int exp)
     {
         UI.instance.Exp += exp;

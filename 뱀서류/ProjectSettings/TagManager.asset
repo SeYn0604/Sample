@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Mag
   - Monster
+  - FxTemporaire
+  - Exp
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Player
   - Item
   - Weapon
-  - 
-  - 
+  - PlayerBullet
+  - MonsterBullet
   - 
   - 
   - 
