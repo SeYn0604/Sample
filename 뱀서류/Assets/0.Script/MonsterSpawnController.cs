@@ -14,8 +14,8 @@ public class MonsterSpawnController : MonoBehaviour
     int range = 10;
     void Awake()
     {
-        //createMonster = CreateMonster(0.5f);
-        //StartCoroutine(createMonster);
+        createMonster = CreateMonster(0.5f);
+        StartCoroutine(createMonster);
     }
     void Update()
     {
@@ -58,9 +58,9 @@ public class MonsterSpawnController : MonoBehaviour
     }
     public void StartSpawn(bool start)
     {
-        /*if (start)
+        if (start)
             StartCoroutine(createMonster);
         else
             StopCoroutine(createMonster);
-    */}
+    }
 }
