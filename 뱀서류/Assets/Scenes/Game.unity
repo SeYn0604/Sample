@@ -4995,7 +4995,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5039,7 +5039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f084c47a688065846b4e72cc9e56e48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xOffset: 23
+  xOffset: 15
   yOffset: -1
   target: {fileID: 1853127465}
   firearm: {fileID: 2007339627}
@@ -5058,7 +5058,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304219222}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
@@ -5838,16 +5838,14 @@ MonoBehaviour:
     title: "\uCFF0\uCC99\uCFF0\uCC99"
     description1: "\uC544\uC774\uD15C \uD68D\uB4DD \uBC18\uACBD \uC99D\uAC00"
     description2: "\uC544\uC774\uD15C \uD68D\uB4DD \uBC18\uACBD *1.1"
-  - sprite: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC800\uACA9"
-    description1: "\uACF5\uACA9\uB825 +10 %, \uBAB9 \uAD00\uD1B5 \uAC1C\uCCB4\uC218
-      +1"
-    description2: "\uBC94\uC704 \uB0B4\uC5D0 \uB79C\uB364\uD55C \uBAAC\uC2A4\uD130\uB97C
-      \uC800\uACA9"
-  - sprite: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-    title: "\uC804\uD22C \uC7A5\uAC11"
-    description1: "\uACF5\uACA9\uC18D\uB3C4 +10%"
-    description2: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+  - sprite: {fileID: -1722126508, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+    title: "\uC544\uC9C1\uBBF8\uAD6C\uD604"
+    description1: "\uB20C\uB7EC\uB3C4\uD6A8\uACFC\uC5C6\uC74C"
+    description2: '-'
+  - sprite: {fileID: -1722126508, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+    title: "\uC544\uC9C1\uBBF8\uAD6C\uD604"
+    description1: "\uB20C\uB7EC\uB3C4\uD6A8\uACFC\uC5C6\uC74C"
+    description2: '-'
   - sprite: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
     title: "\uC804\uD22C \uAD70\uD654"
     description1: "\uC774\uB3D9\uC18D\uB3C4 +10%"
@@ -16521,11 +16519,11 @@ RectTransform:
   - {fileID: 2136949612}
   m_Father: {fileID: 511261927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -81.23999}
   m_SizeDelta: {x: 15, y: 4}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1689091865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16577,6 +16575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1853127460}
+  xoffset: 0
+  yoffset: 0
 --- !u!1 &1712597436
 GameObject:
   m_ObjectHideFlags: 0
@@ -22276,10 +22276,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 511261927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 100, y: -43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055631942
 MonoBehaviour:
@@ -22394,7 +22394,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2}
+  m_Size: {x: 1.5, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &2127300594
 GameObject:

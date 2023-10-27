@@ -193,7 +193,6 @@ public class UI : MonoBehaviour
                 UpgradeCounter(upgradeName);
                 break;
             case "Select 5":
-                p.BulletFireDelayTime -= p.BulletFireDelayTime * 0.1f;
                 p.BulletHitMaxCount++;
                 break;
             case "Select 7":
