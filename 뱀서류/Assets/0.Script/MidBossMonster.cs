@@ -11,6 +11,7 @@ public class MidBossMonster : MonoBehaviour
     [SerializeField] private GameObject magPrefab;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private CapsuleCollider2D capsuleCollider2d;
+    [SerializeField] private BoxCollider2D boxCollider2d;
     public Player p;
     public Bullet bullet;
     public float hp;
@@ -85,7 +86,7 @@ public class MidBossMonster : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision) // 보스한테 총알 맞출 때 피 닳는 방식
     {
-        if (collision != capsuleCollider2d)
+        if (boxCollider2d.enabled)
             return;
         if (collision.gameObject.tag == "Player" && collision.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
         {
