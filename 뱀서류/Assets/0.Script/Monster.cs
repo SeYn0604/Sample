@@ -6,9 +6,9 @@ public class Monster : MonoBehaviour
 {
     [SerializeField] public Player p;
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject expPrefab;
-    [SerializeField] private GameObject magPrefab;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected GameObject expPrefab;
+    [SerializeField] protected GameObject magPrefab;
  
     public float hp;
     protected float atkTime = 2f;
@@ -22,7 +22,7 @@ public class Monster : MonoBehaviour
         hp = 100;
     }
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         if (UI.instance.gameState != GameState.Play)
             return;
@@ -60,11 +60,11 @@ public class Monster : MonoBehaviour
             }
         }
     }
-    public void SetPlayer(Player p)
+    public virtual void SetPlayer(Player p)
     {
         this.p = p;
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player" && collision.GetComponent<Bullet>())
         {  

@@ -5058,7 +5058,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304219222}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
@@ -11149,6 +11149,7 @@ MonoBehaviour:
   - {fileID: 1746024854}
   - {fileID: 708852131}
   MidBossPrefab: {fileID: 3016354637366295150, guid: 2d5de9ec68fee4e4cb3016f3677fa621, type: 3}
+  rangedMonster: {fileID: 6848189550619766351, guid: 541d2cadf832dfd4c94f011aa03940eb, type: 3}
 --- !u!1 &1143944662
 GameObject:
   m_ObjectHideFlags: 0

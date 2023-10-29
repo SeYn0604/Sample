@@ -10,6 +10,7 @@ public class MonsterSpawnController : MonoBehaviour
     [SerializeField] private Transform parent;
     [SerializeField] private BoxCollider2D[] boxColls;
     [SerializeField] private GameObject MidBossPrefab;
+    [SerializeField] private RangedMonster rangedMonster;
     IEnumerator createMonster;
     int range = 10;
     void Awake()
@@ -31,10 +32,20 @@ public class MonsterSpawnController : MonoBehaviour
             yield return new WaitForSeconds(time);
             int rand = Random.Range(0, boxColls.Length);
             Vector2 v = RandomPosition(rand);
+            float spawnProbability = Random.Range(0f, 1f);
+            Monster spawnedMonster;
 
-            Monster m = Instantiate(monster, v, Quaternion.identity);
-            m.SetPlayer(p);
-            m.transform.SetParent(parent);
+            if (spawnProbability <= 0.02f) // 2% 확률로 원거리 몹 생성
+            {
+                spawnedMonster = Instantiate(rangedMonster, v, Quaternion.identity);
+            }
+            else // 98% 확률로 일반 몹 생성
+            {
+                spawnedMonster = Instantiate(monster, v, Quaternion.identity);
+            }
+
+            spawnedMonster.SetPlayer(p);
+            spawnedMonster.transform.SetParent(parent);
         }
     }
     Vector2 RandomPosition(int index)
