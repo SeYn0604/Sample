@@ -35,11 +35,11 @@ public class MonsterSpawnController : MonoBehaviour
             float spawnProbability = Random.Range(0f, 1f);
             Monster spawnedMonster;
 
-            if (spawnProbability <= 0.02f) // 2% 확률로 원거리 몹 생성
+            if (spawnProbability <= 0.05f) // n% 확률로 원거리 몹 생성
             {
                 spawnedMonster = Instantiate(rangedMonster, v, Quaternion.identity);
             }
-            else // 98% 확률로 일반 몹 생성
+            else 
             {
                 spawnedMonster = Instantiate(monster, v, Quaternion.identity);
             }
