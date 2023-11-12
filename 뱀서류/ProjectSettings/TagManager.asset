@@ -8,6 +8,8 @@ TagManager:
   - Monster
   - FxTemporaire
   - Exp
+  - waterPoint
+  - farmPoint
   layers:
   - Default
   - TransparentFX
