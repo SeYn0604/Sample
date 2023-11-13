@@ -42,7 +42,7 @@ public class WaterPoint : MonoBehaviour
         // 무한 루프 대신 arc 값이 1.0에 도달할 때까지로 조건을 변경할 수 있습니다.
         while (true)
         {
-            arc += 0.1f;
+            arc += 0.2f;
             spriteRenderer.material.SetFloat("_Arc1", arc);
             yield return null;
             if (arc > 360f)

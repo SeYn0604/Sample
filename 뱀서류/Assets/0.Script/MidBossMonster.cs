@@ -88,7 +88,7 @@ public class MidBossMonster : MonoBehaviour
     {
         if (boxCollider2d.enabled)
             return;
-        if (collision.gameObject.tag == "Player" && collision.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
+        if (collision.gameObject.tag == "PlayerBullet" && collision.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
         {
             collision.GetComponent<Bullet>().HitCount++;
             if (collision.GetComponent<Bullet>().HitCount >= collision.GetComponent<Bullet>().HitMaxCount)

@@ -45,7 +45,7 @@ public class FarmPoint : MonoBehaviour
     {
         while (true)
         {
-            arc += 0.1f;
+            arc += 0.2f;
             spriteRenderer.material.SetFloat("_Arc1", arc);
             Debug.Log("FillGauge 실행 중");
             yield return null;
