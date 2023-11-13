@@ -10,6 +10,7 @@ TagManager:
   - Exp
   - waterPoint
   - farmPoint
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

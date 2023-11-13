@@ -45,12 +45,6 @@ public class UI : MonoBehaviour
     [SerializeField] MonsterSpawnController monsterSpawnController;
     [SerializeField] private Player p;
     [SerializeField] private Bullet bullet;
-    //11.12. 작업, 문제 생길 시 삭제(교수님 요청사항(rpg요소, 점령 및 디펜스))
-    public Image waterImage; //물양동이에서 물 채울 때 게이지 표시 미터
-    public Image farmImage; //물양동이에 물 채운 후 농작물에 물 뿌릴 때 게이지 표시 미터
-    public float imageFillSpeed = 0.1f;
-    private bool waterImageFilled = false; //물양동이가 채워졌는지 여부
-    //11.12. 작업, 문제 생길 시 삭제
     public GameObject coinDetector;
     public bool isLevelUpPopupActive = false;
     private float maxExp;
@@ -224,26 +218,5 @@ public class UI : MonoBehaviour
             var currentValue = upgradeCounters[upgradeName];
             upgradeCounters[upgradeName] = (currentValue.current + 1, currentValue.max);
         }
-    }
-    //11.12. 작업, 문제 생길 시 삭제(교수님 요청사항(rpg요소, 점령 및 디펜스))
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "waterPoint")
-        {
-            StartCoroutine(FillGauge(waterImage, () => { waterImageFilled = true; }));
-        }
-        else if (collision.gameObject.tag == "farmPoint" && waterImageFilled)
-        {
-            StartCoroutine(FillGauge(farmImage, () => { waterImageFilled = false; })); // 여기서 다시 false로 설정
-        }
-    }
-    IEnumerator FillGauge(Image pointImage, Action onFilled)
-    {
-        while (pointImage.fillAmount < 1)
-        {
-            pointImage.fillAmount += imageFillSpeed * Time.deltaTime; // 게이지 증가
-            yield return null;
-        }
-        onFilled?.Invoke(); // 게이지가 채워지면 상태 변경
     }
 }

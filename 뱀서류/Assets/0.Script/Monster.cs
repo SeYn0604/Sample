@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour
     }
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && collision.GetComponent<Bullet>())
+        if(collision.gameObject.tag == "PlayerBullet" && collision.GetComponent<Bullet>())
         {  
             collision.GetComponent<Bullet>().HitCount++;
             if(collision.GetComponent <Bullet>().HitCount >= collision.GetComponent<Bullet>().HitMaxCount)
