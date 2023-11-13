@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public enum GameState
 {
@@ -167,7 +168,7 @@ public class UI : MonoBehaviour
         {
             if (datas.Count == 0) break;  // 더 이상 선택할 수 있는 업그레이드가 없으면 루프 종료
 
-            int rand = Random.Range(0, datas.Count);
+            int rand = UnityEngine.Random.Range(0, datas.Count);
             upgradeDatas.Add(datas[rand]);
             datas.RemoveAt(rand);
         }
@@ -209,7 +210,7 @@ public class UI : MonoBehaviour
         isLevelUpPopupActive = false;
     }
 
-    // 업그레이드 카운터 증가 함수
+    // 업그레이드 카운터 증가 함수  
     void UpgradeCounter(string upgradeName)
     {
         if (upgradeCounters.ContainsKey(upgradeName))
