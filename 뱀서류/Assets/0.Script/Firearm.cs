@@ -35,8 +35,10 @@ public class Firearm : MonoBehaviour
     {
         if(front1Transform != null && reloadUi != null)
         {
-            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-            reloadUi.transform.position = screenPosition;
+            Vector3 mp = Input.mousePosition;
+            mp.z = Camera.main.transform.position.z;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mp);
+            reloadUi.rectTransform.position = worldPosition;
         }
         worldOriginalPosition = transform.parent.TransformPoint(originalPosition);
         // R키를 누르면 재장전
