@@ -95,7 +95,6 @@ public class UI : MonoBehaviour
             }
         }
     }
-
     public int KillCount
     {
         get { return killCount; }
@@ -184,7 +183,6 @@ public class UI : MonoBehaviour
             upUI[i].description2.text = upgradeDatas[i].description2;
         }
     }
-
     public void OnUpgrade(int index)
     {
         string upgradeName = upgradeDatas[index].sprite.name;
@@ -207,11 +205,9 @@ public class UI : MonoBehaviour
                 SetHP(p.HP, p.MaxHP);
                 break;
         }
-
         levelUpPopup.gameObject.SetActive(false);
         isLevelUpPopupActive = false;
     }
-
     // 업그레이드 카운터 증가 함수  
     void UpgradeCounter(string upgradeName)
     {

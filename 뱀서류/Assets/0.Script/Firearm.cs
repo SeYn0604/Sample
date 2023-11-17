@@ -10,6 +10,9 @@ public class Firearm : MonoBehaviour
     [SerializeField] public Player player;
     [SerializeField] public UI ui;
     [SerializeField] private SpriteRenderer weaponSprite;
+    [SerializeField] public UnityEngine.UI.Image reloadUi;
+    [SerializeField] private Transform front1Transform;
+    public float reloadTime = 2f; // 이후 레벨업 등 스펙업 요소 구현 시 어떻게??
     public GameObject bulletPrefab;
     public Text ammoText;
     public int maxAmmo = 10;
@@ -30,6 +33,11 @@ public class Firearm : MonoBehaviour
     }
     void Update()
     {
+        if(front1Transform != null && reloadUi != null)
+        {
+            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            reloadUi.transform.position = screenPosition;
+        }
         worldOriginalPosition = transform.parent.TransformPoint(originalPosition);
         // R키를 누르면 재장전
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && ui.gameState == GameState.Play)
@@ -75,9 +83,15 @@ public class Firearm : MonoBehaviour
     IEnumerator ReloadCoroutine()
     {
         isReloading = true;
-        float reloadTime = 2f; // 이후 레벨업 등 스펙업 요소 구현 시 어떻게??
-        yield return new WaitForSeconds(reloadTime);
+        StartReloadUI(); // 재장전 UI 시작
+        float reloadEndTime = Time.time + reloadTime;
+        while (Time.time < reloadEndTime)
+        {
+            reloadUi.fillAmount = (Time.time - (reloadEndTime - reloadTime)) / reloadTime;
+            yield return null;
+        }
         Reload();
+        StopReloadUI(); // 재장전 UI 종료
         isReloading = false;
     }
     void Reload()
@@ -104,5 +118,13 @@ public class Firearm : MonoBehaviour
         weaponSprite.transform.localPosition = initialPosition;
         isRecoiling = false;
     }
-
+    public void StartReloadUI()
+    {
+        reloadUi.gameObject.SetActive(true);
+        reloadUi.fillAmount = 0f;
+    }
+    public void StopReloadUI()
+    {
+        reloadUi.gameObject.SetActive(false);
+    }
 }
