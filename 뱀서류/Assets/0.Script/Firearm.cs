@@ -30,13 +30,14 @@ public class Firearm : MonoBehaviour
         ui = UI.instance;
         currentAmmo = maxAmmo;
         originalPosition = transform.localPosition;
+        reloadUi.gameObject.SetActive(false);
     }
     void Update()
     {
         if(front1Transform != null && reloadUi != null)
         {
             Vector3 mp = Input.mousePosition;
-            mp.z = Camera.main.transform.position.z;
+            mp.z = -Camera.main.transform.position.z;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mp);
             reloadUi.rectTransform.position = worldPosition;
         }
