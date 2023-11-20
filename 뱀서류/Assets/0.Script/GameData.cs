@@ -8,6 +8,7 @@ public class GameData : ScriptableObject
     public enum ItemType { Ammo, Damage, Stun, Reloadtime, None }
     public enum StatType { Hp, Def, Speed, Reloadspeed, None }
 
+    
     /*[Header("#Weapon Info")]
     public ItemType itemType;
     public int itemId;
@@ -26,4 +27,12 @@ public class GameData : ScriptableObject
 
     [Header("#Weapon")]
     public GameObject projectile;
+}
+
+public class UserData
+{
+    public int userHp;
+    public int userDef;
+    public int userSpeed;
+    public int userReloadspeed;
 }

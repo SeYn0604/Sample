@@ -51,7 +51,7 @@ public class MidBossDash : MonoBehaviour
     {
         if (!boxCollider2D.enabled)
             return;
-        if (collision.gameObject.tag == "Player" && collision.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
+        if (collision.gameObject.tag == "PlayerBullet" && collision.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
         {
             Vector3 bulletDirection = collision.transform.position - transform.position;
             bulletDirection.Normalize();
