@@ -9,24 +9,40 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class Upgrade : MonoBehaviour
 {
     public GameData data;
-    public UserData user;
+    
     public int level;
+    public bool isthisdata;
 
     Image icon;
     Text textLevel;
 
     void Awake()
     {
-        LoadUserData();
+        //LoadUserData();
         //icon = GetComponentsInChildren<Image>()[1];
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
-        
+        switch (data.statType)
+        {
+            case GameData.StatType.Hp:
+                level = GameDataMng.Instance.userHp;
+                break;
+            case GameData.StatType.Def:
+                level = GameDataMng.Instance.userDef;
+                break;
+            case GameData.StatType.Speed:
+                level = GameDataMng.Instance.userSpeed;
+                break;
+            case GameData.StatType.Reloadspeed:
+                level = GameDataMng.Instance.userReloadspeed;
+                break;
+        }
+
     }
 
     private void LateUpdate()
     {
-        textLevel.text = data.statType.ToString()+ "  " + (level + 1);
+        textLevel.text = data.statType + "\nLv." + (level);
     }
 
     public void OnClick()
@@ -34,16 +50,16 @@ public class Upgrade : MonoBehaviour
         switch (data.statType)
         {
             case GameData.StatType.Hp:
-                //user.userHp = level + 1;
+                GameDataMng.Instance.userHp = level + 1;
                 break;
             case GameData.StatType.Def:
-                user.userDef = level + 1;
+                GameDataMng.Instance.userDef = level + 1;
                 break;
             case GameData.StatType.Speed:
-                user.userSpeed = level + 1;
+                GameDataMng.Instance.userSpeed = level + 1;
                 break;
             case GameData.StatType.Reloadspeed:
-                user.userReloadspeed = level + 1;
+                GameDataMng.Instance.userReloadspeed = level + 1;
                 break;
         }
         level++;
@@ -54,16 +70,16 @@ public class Upgrade : MonoBehaviour
 
     public void SaveUserData()
     {
-        FileStream file = new FileStream(Application.persistentDataPath + "/userdata.dat", FileMode.Create);
+        /*FileStream file = new FileStream(Application.persistentDataPath + "/userdata.dat", FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         binaryFormatter.Serialize(file, user);
-        file.Close();
+        file.Close();*/
         
     }
 
     public void LoadUserData()
     {
-        if (File.Exists(Application.persistentDataPath + "/userdata.dat"))
+        /*if (File.Exists(Application.persistentDataPath + "/userdata.dat"))
         {
             FileStream file = new FileStream(Application.persistentDataPath + "/userdata.dat", FileMode.Open);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -73,7 +89,7 @@ public class Upgrade : MonoBehaviour
         else
         {
             user = new UserData();
-        }
+        }*/
     }
     
 }
