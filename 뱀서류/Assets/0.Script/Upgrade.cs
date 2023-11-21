@@ -22,6 +22,11 @@ public class Upgrade : MonoBehaviour
         //icon = GetComponentsInChildren<Image>()[1];
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
+
+    }
+
+    private void Start()
+    {
         switch (data.statType)
         {
             case GameData.StatType.Hp:
@@ -37,7 +42,6 @@ public class Upgrade : MonoBehaviour
                 level = GameDataMng.Instance.userReloadspeed;
                 break;
         }
-
     }
 
     private void LateUpdate()
