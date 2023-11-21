@@ -6,10 +6,10 @@ public class GameDataMng : MonoBehaviour
 {
     public static GameDataMng Instance;
 
-    public int userHp;
-    public int userDef;
-    public int userSpeed;
-    public int userReloadspeed;
+    public int userHp =0;
+    public int userDef =0;
+    public int userSpeed =0;
+    public int userReloadspeed =0;
 
 
     private void Awake()
